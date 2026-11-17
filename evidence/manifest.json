@@ -14,8 +14,12 @@
       "sha256": "2f59278eb2c7e26cf042bf93d8a42210be63749bd29d710b8f73453f47adb251"
     },
     "README.md": {
-      "bytes": 5178,
-      "sha256": "3bc65a8f71ebe9aa9945d137f59af3a5198681389dc018e969c379ef5219f56c"
+      "bytes": 5414,
+      "sha256": "efe961750700fe932d949a22c36873202ce7073ca4e54dfd1dac857f6e08cd6a"
+    },
+    "articles/informal-explanation.md": {
+      "bytes": 10647,
+      "sha256": "d691cc3f75e1455ee2d264c71ab3afe8719e6a1ecb2fc5cad097d9872996a80c"
     },
     "evidence/verification.json": {
       "bytes": 532,

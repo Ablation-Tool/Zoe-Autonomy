@@ -95,6 +95,10 @@ pdflatex -interaction=nonstopmode -halt-on-error \
 python scripts/verify-artifacts.py
 ```
 
+## Informal explanation
+
+[Read the informal explanation](articles/informal-explanation.md) for a narrative introduction to the architecture, the full-autonomy claim, the measured experiment, controls, evidence, and execution boundary.
+
 ## Verification
 
 ```bash
