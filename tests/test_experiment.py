@@ -10,6 +10,8 @@ import unittest
 
 from zoe_autonomy.cli import main
 from zoe_autonomy.experiment import run_experiment, save_report, verify_report
+from guiai.gem.operational_autonomy import measure_zoe_profile
+from zoe_autonomy.loop import digest
 
 
 ZOE_ROOT = Path(os.environ.get("ZOE_ROOT", ""))
@@ -60,11 +62,14 @@ class ExperimentCase(unittest.TestCase):
                 self.assertEqual(main(["--zoe-root", str(ZOE_ROOT), "run", "--output", str(cli_path)]), 0)
                 self.assertIn("full_autonomy", output.getvalue())
                 self.assertEqual(main(["--zoe-root", str(ZOE_ROOT), "verify", str(cli_path)]), 0)
-            self.assertEqual(json.loads(path.read_text(encoding="utf-8")), json.loads(cli_path.read_text(encoding="utf-8")))
+            expected = run_experiment(ZOE_ROOT)
+            expected["operational_profile"] = measure_zoe_profile()
+            expected["profile_sha256"] = digest({key: value for key, value in expected.items() if key != "profile_sha256"})
+            self.assertEqual(json.loads(cli_path.read_text(encoding="utf-8")), expected)
             edited = json.loads(path.read_text(encoding="utf-8"))
             edited["autonomy_profile"]["classification"] = "forecast_or_external_control_only"
             path.write_text(json.dumps(edited), encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "fresh end-to-end"):
+            with self.assertRaisesRegex(ValueError, "digest mismatch"):
                 verify_report(path, ZOE_ROOT)
 
 

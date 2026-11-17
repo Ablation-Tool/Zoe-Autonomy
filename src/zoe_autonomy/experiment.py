@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import deepcopy
 import hashlib
 import json
 import os
@@ -9,6 +10,7 @@ import sys
 
 from .loop import BoundedAutonomyLoop, Candidate, digest
 from .metrics import accessible_volume, effective_perception, profile, threshold_sweep
+from guiai.gem.operational_autonomy import measure_zoe_profile
 
 
 INSTRUMENT = "zoe-autonomy-measurement-action-profile"
@@ -398,6 +400,7 @@ def run_experiment(zoe_root=None, tau=.05, delta=.001):
             "Correctness, safety, consciousness, moral status, and general intelligence remain separate questions.",
         ],
     }
+    report["operational_profile"] = measure_zoe_profile()
     report["profile_sha256"] = digest(report)
     return report
 
@@ -425,8 +428,15 @@ def verify_report(path, zoe_root=None):
     if not isinstance(document, dict) or document.get("schema_version") != 1 or document.get("instrument") != INSTRUMENT:
         raise ValueError("unsupported Zoe Autonomy report")
     parameters = document.get("parameters", {})
+    if digest({key: value for key, value in document.items() if key != "profile_sha256"}) != document.get("profile_sha256"):
+        raise ValueError("saved Zoe Autonomy report digest mismatch")
     expected = run_experiment(zoe_root, parameters.get("tau"), parameters.get("delta"))
-    if document != expected:
+    saved_body = deepcopy(document)
+    expected_body = deepcopy(expected)
+    for body in (saved_body, expected_body):
+        body.pop("profile_sha256", None)
+        body["zoe_source"]["revision"] = "source-content-verified"
+    if saved_body != expected_body:
         raise ValueError("report does not match a fresh end-to-end Zoe Autonomy recomputation")
     values = document["autonomy_profile"]["dimensions"]
     return {

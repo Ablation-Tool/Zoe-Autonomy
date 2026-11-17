@@ -55,15 +55,16 @@ def main(argv=None):
             from .actuation import actuation_main
             return actuation_main(arguments.arguments)
         if arguments.command == "run":
-            report = run_experiment(arguments.zoe_root, arguments.tau, arguments.delta)
-            output = save_report(report, arguments.output) if arguments.output else None
+            from guiai.gem.autonomy_view import main as unified_main
+            forwarded = ["run"]
+            if arguments.zoe_root:
+                forwarded.extend(["--zoe-root", arguments.zoe_root])
+            forwarded.extend(["--tau", str(arguments.tau), "--delta", str(arguments.delta)])
+            if arguments.output:
+                forwarded.extend(["--output", arguments.output])
             if arguments.full:
-                print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
-            else:
-                print(summary(report))
-                if output:
-                    print(f"Evidence: {output} · profile_sha256={report['profile_sha256']}")
-            return 0
+                forwarded.append("--full")
+            return unified_main(forwarded)
         if arguments.command == "step":
             from .autonomous import run_step, save_step_report, step_summary
             report = run_step(arguments.state)
@@ -76,6 +77,9 @@ def main(argv=None):
             from .autonomous import verify_step_report
             print(json.dumps(verify_step_report(arguments.report), ensure_ascii=False, indent=2, sort_keys=True))
             return 0
+        if arguments.command == "verify":
+            from guiai.gem.autonomy_view import main as unified_main
+            return unified_main(["verify", arguments.report])
         result = verify_report(arguments.report, arguments.zoe_root)
         print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
         return 0
