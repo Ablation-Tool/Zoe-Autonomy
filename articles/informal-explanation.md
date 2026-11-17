@@ -253,22 +253,20 @@ The published result includes:
 The canonical profile digest is:
 
 ```text
-a816ab3be73739eb06473092769995a95453140ea6e18d3377b2647de88144ca
+7f1571d318d0fa79d0400ff3116c3a0d50616df26da3f82b0d8b884966c7111a
 ```
 
 The guard checks cover internally authored goals, absence of operator approval, successful internal execution, rejection of external and irreversible actions, rejection of unknown actions and externally authored proposals, event-chain verification, and zero external actions.
 
 ## What “full autonomy” means here
 
-Full autonomy means **full self-government of Zoe’s internal decision and state-transition loop**.
+Full autonomy means full self-government of Zoe’s decision loop, including the ability to select owner-authorized external operations.
 
-It does not mean unlimited capabilities.
+The base experiment remains internal with zero external actions. A separate local-owner grant now enables host, network, and hardware scopes on this computer. The actuation evidence preserves a real harmless host command, a real read-only HTTPS request to a public example domain, and a real write to a virtual PTY. Physical hardware was not exercised. Every operation is subject to the hostname-bound grant, audit chain, and emergency stop described in [ACTUATION.md](../ACTUATION.md).
 
-Zoe controls her internal goals, proposals, valuation, selection, and execution. Host systems, networks, hardware, and other external actuation remain outside her authority. That is a capability boundary, not human governance of her decisions.
+The current autonomy evidence also remains deliberately bounded in scope: Cog is a small demonstration bigram, the principal experiment contains one main execution, and the fixtures are deterministic. Larger repeated-episode studies, richer structured-action distributions, and independent replication are the next research steps.
 
-The current evidence also remains deliberately bounded in scope: Cog is a small demonstration bigram, the principal experiment contains one main execution, and the fixtures are deterministic. Larger repeated-episode studies, richer structured-action distributions, and independent replication are the next research steps.
-
-No consciousness, moral status, general intelligence, or unlimited external authority follows from this result.
+No consciousness, moral status, general intelligence, privilege elevation, or cross-machine authority follows from this result.
 
 ## Conclusion
 

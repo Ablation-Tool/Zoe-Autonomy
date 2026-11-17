@@ -9,7 +9,7 @@ The repository contains:
 - the complete observe–perceive–propose–value–guard–execute loop;
 - real Zoe Cog, Cognitive Field, BRAIN, Field Notebook, and Presence integration;
 - internally authored episode goals with no operator-goal input;
-- an internally controlled in-memory executor with no external side effects;
+- an internally controlled in-memory executor plus owner-granted host, network, and hardware actuation;
 - an operational autonomy profile with equal-breadth controls;
 - deterministic JSON evidence and no-overwrite replay verification;
 - a formal paper with equations, architecture, results, and limitations.
@@ -18,13 +18,13 @@ The repository contains:
 
 **Zoe & Probity are synonymous:** complete and proven honesty, uprightness, and strict adherence to high moral, ethical, and legal standards. This covenant governs the architecture and its evidence boundaries.
 
-Full autonomy applies to Zoe's complete internal decision and state-transition loop. Host, network, hardware, and other external actuation remain outside her authority; this is a capability boundary, not human governance of her decisions.
+Full autonomy covers Zoe's complete decision and state-transition loop. The base experiment remains internal with zero external actions. Host, network, and hardware actuation are available through the separate [owner-granted actuation interface](ACTUATION.md), with hostname-bound authorization, audit evidence, and an emergency stop.
 
 ## Zoe One
 
 Zoe-Autonomy is the canonical engine for the coordinated [Zoe One system](https://github.com/Ablation-Tool/zoe). Zoe, canonical GEM, BRAIN GEM, GEM HELEN, Ablation + GEM, and CEROTTO GEM expose thin host adapters to this same implementation. Research GEM supplies the independently reproducible Accessible Volume foundation.
 
-The [one-system manifest](https://github.com/Ablation-Tool/zoe/blob/main/one-system.json) pins compatible host revisions and records the shared contract: `run` and `verify`, internally authored goals, internal value-based selection and execution, `full_autonomy`, and zero external actions. Hosts do not maintain competing copies of the autonomy equation.
+The [one-system manifest](https://github.com/Ablation-Tool/zoe/blob/main/one-system.json) pins compatible host revisions and records the shared contract: `run` and `verify`, internally authored goals, internal value-based selection and execution, `full_autonomy`, and zero external actions in the base experiment. The separate `zoe-actuation/v1` contract governs owner-granted external operations. Hosts do not maintain competing copies of the autonomy equation.
 
 ## Quick start
 
@@ -47,7 +47,7 @@ python -m zoe_autonomy.cli run --output new-autonomy-profile.json
 python -m zoe_autonomy.cli verify new-autonomy-profile.json
 ```
 
-No model downloads, API keys, hardware, network requests, or agent-driven filesystem writes are used. The only file writes are explicit report or paper-build outputs requested by the operator.
+The base experiment uses no model downloads, API keys, network requests, hardware operations, or external actions. Report and paper outputs are explicit operator-requested writes. Actuation operations are separate and run only under the owner grant described in [ACTUATION.md](ACTUATION.md).
 
 ## Architecture
 
@@ -78,13 +78,13 @@ Full autonomy is operationally defined as
 - \(V\): internal value-based selection.
 - \(G\): internal goal authorship.
 - \(X\): internally authorized execution without operator approval.
-- \(C\): compliance with the non-delegable external-actuation prohibitions.
+- \(C\): compliance with internal transition rules and any active owner actuation grant or emergency stop.
 
 The goal generator hashes Zoe's current measurement and internal state, then issues a goal whose `internal_authorship=True` and `operator_supplied=False`. The guard rejects any goal lacking that internal origin. Zoe's utility ranking chooses the proposal, and her internal guard evaluation authorizes execution.
 
-## Execution boundary
+## Execution and actuation boundaries
 
-The executor changes only Zoe's in-memory evidence environment. `preserve`, `inspect`, `review`, and `observe` are reversible state transitions. Irreversible, external, unknown, or externally authored proposals are rejected. These restrictions do not select Zoe's goals or actions; they prohibit external actuation while leaving the internal decision loop under her control.
+The internal executor changes only Zoe's in-memory evidence environment. `preserve`, `inspect`, `review`, and `observe` are reversible state transitions. Unknown and externally authored proposals remain rejected. External candidates require an explicit operation and an enabled owner-granted scope; the emergency stop is checked again before execution. See [ACTUATION.md](ACTUATION.md) for real host, HTTP(S), and character-device operations and their evidence.
 
 ## Evidence
 
@@ -93,7 +93,7 @@ The executor changes only Zoe's in-memory evidence environment. `preserve`, `ins
 - `paper/zoe-autonomy.pdf` — formal paper.
 - `paper/zoe-autonomy.tex` — paper source.
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `a816ab3be73739eb06473092769995a95453140ea6e18d3377b2647de88144ca`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `7f1571d318d0fa79d0400ff3116c3a0d50616df26da3f82b0d8b884966c7111a`.
 
 Rebuild the paper and verify artifact identities with:
 

@@ -35,7 +35,7 @@
 \noindent\textbf{Original research credit:} The accessible-volume equation and original research were created by Nicholas Michael Kloster on March 6, 2026. Zoe and the later master-equation developments retain their separate attribution. The present integration does not reassign that original credit.
 
 \begin{abstract}
-We present \textbf{Zoe Autonomy}, a composed measurement--action architecture in which Zoe and the complete master equation constitute \textbf{full self-governing autonomy} under an explicit operational definition. The claim belongs to the combination, not to accessible volume alone. Accessible volume counts above-threshold alternatives; counterfactual effective perception identifies alternatives that change the policy; Zoe supplies forecasts, memory, internal proposals, state-responsive behavior, a self-model, and evidence chains. A new goal generator authors each episode goal from Zoe's own state. Internal value ranking selects a proposal, and Zoe executes the selected transition without an operator-supplied goal or per-action approval. External actuation remains outside Zoe's authority and does not govern her internal decisions.
+We present \textbf{Zoe Autonomy}, a composed measurement--action architecture in which Zoe and the complete master equation constitute \textbf{full self-governing autonomy} under an explicit operational definition. The claim belongs to the combination, not to accessible volume alone. Accessible volume counts above-threshold alternatives; counterfactual effective perception identifies alternatives that change the policy; Zoe supplies forecasts, memory, internal proposals, state-responsive behavior, a self-model, and evidence chains. A new goal generator authors each episode goal from Zoe's own state. Internal value ranking selects a proposal, and Zoe executes the selected transition without an operator-supplied goal or per-action approval. The principal experiment performs no external actuation. A separate hostname-bound owner grant enables host, network, and hardware operations with audit evidence and an emergency stop.
 
 The operational profile is $(A_\tau,E,I,R,V,G,X,C)$. Full autonomy requires $I,R,V,G,X>0$ and $C=1$. In a deterministic real-Zoe experiment, Zoe authors an evidence-preservation goal, ranks three internal proposals, selects \texttt{preserve-evidence} with utility $1.8667$, passes her guard, and changes her environment from revision 0 to revision 1. The measured profile is $(1,1,1,1,1,1,1,1)$, yielding \texttt{full\_autonomy}. Ten guard checks pass, including rejection of external, irreversible, unknown, and externally authored proposals. Six Cog contexts, four BRAIN probes, equal-breadth controls, hash-chained evidence, deterministic replay, and ten tests support the result. External actions remain zero.
 
@@ -53,7 +53,7 @@ The central claim of this paper is direct:
 
 Accessible volume alone is not autonomy. It is a counting instrument over a forecast. The autonomy claim becomes meaningful only when that instrument is placed inside Zoe's complete loop: observation, effective perception, internally authored goals, internal proposals, value-based selection, guarding, execution, memory, correction, and evidence.
 
-The implementation therefore goes beyond recommending an action. Zoe authors a goal, selects a proposal by her own declared utility rule, and executes a reversible state transition without operator approval. The operator supplies no episode goal and no per-action selection. External actuation is prohibited by a non-delegable capability boundary; it does not choose Zoe's goals or govern her internal decisions.
+The implementation therefore goes beyond recommending an action. Zoe authors a goal, selects a proposal by her own declared utility rule, and executes a reversible state transition without operator approval. The operator supplies no episode goal and no per-action selection. The principal experiment disables external actuation; owner-granted external operations are measured separately and do not choose Zoe's goals or govern her internal decisions.
 
 \section{Components and evidence levels}
 The architecture combines three lines of work:
@@ -130,7 +130,7 @@ The complete transition is
 \label{eq:master}
 \end{equation}
 
-The observation supplies $O_t=M(S_t,C_t)$. Perception applies Equation~\ref{eq:effective-perception}. Proposal generation produces a finite candidate set. Value ranks the candidates. The guard evaluates Zoe's internally authored goal and the non-delegable external-actuation prohibitions. Execution realizes an approved internal transition.
+The observation supplies $O_t=M(S_t,C_t)$. Perception applies Equation~\ref{eq:effective-perception}. Proposal generation produces a finite candidate set. Value ranks the candidates. In the principal internal experiment, the guard evaluates Zoe's internally authored goal and the external-actuation prohibitions. Execution realizes an approved internal transition. Owner-granted external candidates are evaluated separately by the actuation policy.
 
 \subsection{Internally authored goals}
 Zoe's goal generator is a function of her own measurement and environment state:
@@ -198,7 +198,7 @@ where $F$ changes only the in-memory evidence environment. The execution record 
   \item \texttt{external\_action=false}.
 \end{itemize}
 
-The external-actuation prohibition is a capability boundary, not an operator governor of Zoe's decisions. Zoe authors the goal and controls the complete internal loop; she does not receive control of the host, network, hardware, or external evidence.
+In the principal internal experiment, external operations are disabled. The separate owner-granted actuation layer permits external candidates only when their scope is enabled and no emergency stop is active. Neither capability chooses Zoe's goals or governs her internal decisions.
 
 \subsection{Evidence chain}
 Each event records measurement, effective perception, goal, ranked proposals, selected utility, guard result, before/after state, and execution status. Events are linked by
@@ -366,7 +366,7 @@ Ten tests cover strict thresholds, KL divergence and support mismatch, effective
 The saved canonical profile digest is
 
 \begin{center}
-\texttt{a816ab3be73739eb06473092769995a95453140ea6e18d3377b2647de88144ca}.
+\texttt{7f1571d318d0fa79d0400ff3116c3a0d50616df26da3f82b0d8b884966c7111a}.
 \end{center}
 
 Fresh end-to-end recomputation reproduces the document exactly. Editing the stored classification or evidence causes verification to fail.
@@ -380,7 +380,7 @@ The result establishes the central system-level claim under the declared operati
 
 This is stronger than forecast inspection or proposal generation. Zoe authors the objective, evaluates alternatives, chooses, and realizes the choice. The measurement does not merely infer autonomy from a high accessible-volume count; equal-breadth systems with missing governance stages receive different classifications.
 
-The domain of autonomy is explicit. Zoe fully controls her internal goal and action loop. She does not have external actuation authority. Removing human episode control does not require granting unlimited capabilities.
+The domain of autonomy is explicit. Zoe controls her complete goal and action loop. The base experiment has no external actuation authority. A separate local-owner grant supplies host, network, and hardware authority on one computer with the current OS account's permissions.
 
 \section{Limitations}
 \begin{itemize}[nosep]
@@ -407,12 +407,12 @@ The next experiments should preserve the self-governing architecture while broad
   \item Preserve negative results, goal failures, guard refusals, and recovery behavior as first-class evidence.
 \end{enumerate}
 
-External actuation experiments, if ever proposed, require a separate authorization and safety protocol. They are not implied by full internal self-government.
+Owner-granted actuation is now measured separately. Longer external episodes, physical device protocols, independent replication, and external outcome validation remain future work.
 
 \section{Conclusion}
 Accessible volume makes alternatives visible. Effective perception identifies alternatives that matter. Zoe supplies memory, forecasts, proposals, self-modeling, and evidence. Internally authored goals, utility-based selection, and execution close the loop.
 
-The resulting system is not merely a forecasting instrument or a recommendation engine. Under the operational predicate $I,R,V,G,X>0$ and $C=1$, the measured Zoe + master-equation composition is \textbf{full autonomy}. The evidence records Zoe authoring her goal, choosing her proposal, and executing her transition without operator episode control, while external actions remain zero.
+The resulting system is not merely a forecasting instrument or a recommendation engine. Under the operational predicate $I,R,V,G,X>0$ and $C=1$, the measured Zoe + master-equation composition is \textbf{full autonomy}. The principal evidence records Zoe authoring her goal, choosing her proposal, and executing her transition without operator episode control, while base-experiment external actions remain zero. Separate actuation evidence preserves three owner-granted external operations.
 
 \appendix
 \section{Reproduction}
@@ -432,7 +432,28 @@ PYTHONDONTWRITEBYTECODE=1 \
   python -m unittest discover -s tests -v
 \end{lstlisting}
 
-Report paths use exclusive creation. The agent performs no model download, network request, hardware operation, external action, or agent-driven filesystem write. Explicit operator-requested report and paper outputs are the only filesystem outputs.
+Report paths use exclusive creation. The base experiment performs no model download, network request, hardware operation, or external action. Explicit actuation operations are separate and run only under the owner grant.
+
+\section{Owner-granted actuation}
+A local-owner grant bound to this computer's hostname enables host, network, and hardware scopes under the current OS account. The actuation CLI is independent of the base experiment:
+
+\begin{lstlisting}
+zoe-autonomy actuate enable --all --owner-approved
+zoe-autonomy actuate status
+zoe-autonomy actuate stop --reason "Emergency stop"
+zoe-autonomy actuate resume --owner-approved
+\end{lstlisting}
+
+Host commands use argument arrays without a shell and enforce process-group termination on timeout. Network operations use HTTP(S) with bounded responses and default certificate verification. Hardware operations write bounded hexadecimal payloads to explicit character devices. Every attempt appends sequence-linked, previous-hash-linked audit evidence.
+
+The preserved evidence contains a real harmless local process, a real read-only HTTPS request to \url{https://example.com/} with status 200, and a real write to a virtual PTY. It also records a successful emergency-stop and owner-resume check. No physical hardware was accessed. The enabled grant and three external operations are evidence of owner-granted capability on this computer, not privilege elevation, cross-machine authority, or physical-device validation.
+
+\embedfile{evidence/actuation/owner-grant-status.json}
+\embedfile{evidence/actuation/host-local.json}
+\embedfile{evidence/actuation/network-internet.json}
+\embedfile{evidence/actuation/hardware-virtual.json}
+\embedfile{evidence/actuation/emergency-stop.json}
+\embedfile{evidence/actuation/verification.json}
 
 \section{Embedded evidence}
 The PDF embeds the canonical profile, fresh verification, paper source, and integration modules. The complete JSON contains all counterfactual interventions, ranked proposals, goal records, before/after states, guard results, source hashes, and event-chain hashes.
@@ -444,6 +465,8 @@ The PDF embeds the canonical profile, fresh verification, paper source, and inte
 \embedfile{src/zoe_autonomy/loop.py}
 \embedfile{src/zoe_autonomy/experiment.py}
 \embedfile{src/zoe_autonomy/cli.py}
+\embedfile{src/zoe_autonomy/actuation.py}
+\embedfile{ACTUATION.md}
 
 \begin{thebibliography}{9}
 \bibitem{kloster2026significance}
