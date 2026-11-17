@@ -14,6 +14,7 @@ The repository contains:
 - real Zoe Cog, Cognitive Field, BRAIN, Field Notebook, and Presence integration;
 - internally authored episode goals with no operator-goal input;
 - an internally controlled in-memory executor plus owner-granted host, network, and hardware actuation;
+- read-only internet exploration and an owner-authorized connected-agent gateway;
 - an operational autonomy profile with equal-breadth controls;
 - deterministic JSON evidence and no-overwrite replay verification;
 - a formal paper with equations, architecture, results, and limitations.
@@ -52,6 +53,26 @@ python -m zoe_autonomy.cli verify new-autonomy-profile.json
 ```
 
 The base experiment uses no model downloads, API keys, network requests, hardware operations, or external actions. Report and paper outputs are explicit operator-requested writes. Actuation operations are separate and run only under the owner grant described in [ACTUATION.md](ACTUATION.md).
+
+## Internet exploration and connected agents
+
+Retrieve and follow public web content:
+
+```bash
+zoe-autonomy explore \
+  --url https://example.com/ --pages 5 --depth 1 \
+  --output exploration.json
+```
+
+Discover and invoke owner-connected AI-agent accounts:
+
+```bash
+zoe-autonomy agents discover --register --owner-approved
+zoe-autonomy agents list
+zoe-autonomy agents run kimi --prompt "Explain this repository"
+```
+
+Kimi and Claude are currently registered through their existing authenticated CLIs. The gateway also supports custom CLI templates and OpenAI-compatible accounts using environment-held credentials. See [GATEWAY.md](GATEWAY.md), the [real web exploration](evidence/exploration/example-com.json), and [connected-account evidence](evidence/agents/registered-accounts.json).
 
 ## Architecture
 
@@ -97,7 +118,7 @@ The internal executor changes only Zoe's in-memory evidence environment. `preser
 - `paper/zoe-autonomy.pdf` — formal paper.
 - `paper/zoe-autonomy.tex` — paper source.
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `7f1571d318d0fa79d0400ff3116c3a0d50616df26da3f82b0d8b884966c7111a`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `cb532c3959c5d309a7ba25bc1a453659a0dfdad2ccc2c57845a59363bd4e70e2`.
 
 Rebuild the paper and verify artifact identities with:
 

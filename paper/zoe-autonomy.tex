@@ -366,7 +366,7 @@ Ten tests cover strict thresholds, KL divergence and support mismatch, effective
 The saved canonical profile digest is
 
 \begin{center}
-\texttt{7f1571d318d0fa79d0400ff3116c3a0d50616df26da3f82b0d8b884966c7111a}.
+\texttt{cb532c3959c5d309a7ba25bc1a453659a0dfdad2ccc2c57845a59363bd4e70e2}.
 \end{center}
 
 Fresh end-to-end recomputation reproduces the document exactly. Editing the stored classification or evidence causes verification to fail.
@@ -455,6 +455,16 @@ The preserved evidence contains a real harmless local process, a real read-only 
 \embedfile{evidence/actuation/emergency-stop.json}
 \embedfile{evidence/actuation/verification.json}
 
+\section{Internet exploration and connected agents}
+Zoe can retrieve public web pages, extract visible text and links, and preserve short evidence excerpts. A real read-only request to \url{https://example.com/} returned status 200 and the title ``Example Domain.'' Same-origin traversal, robots.txt checks, bounded page counts, and rate limits are explicit in the explorer.
+
+The connected-agent gateway discovers and registers owner-authorized local CLI accounts and OpenAI-compatible endpoints. Kimi and Claude are registered through their existing authenticated CLIs. Registration performed no model invocation. Custom HTTP connections name an environment variable for their credential; prompt and response audits store hashes rather than secrets or prompt bodies.
+
+\embedfile{GATEWAY.md}
+\embedfile{evidence/exploration/example-com.json}
+\embedfile{evidence/agents/registered-accounts.json}
+\embedfile{evidence/agents/verification.json}
+
 \section{Embedded evidence}
 The PDF embeds the canonical profile, fresh verification, paper source, and integration modules. The complete JSON contains all counterfactual interventions, ranked proposals, goal records, before/after states, guard results, source hashes, and event-chain hashes.
 
@@ -466,6 +476,8 @@ The PDF embeds the canonical profile, fresh verification, paper source, and inte
 \embedfile{src/zoe_autonomy/experiment.py}
 \embedfile{src/zoe_autonomy/cli.py}
 \embedfile{src/zoe_autonomy/actuation.py}
+\embedfile{src/zoe_autonomy/explore.py}
+\embedfile{src/zoe_autonomy/agents.py}
 \embedfile{ACTUATION.md}
 
 \begin{thebibliography}{9}
