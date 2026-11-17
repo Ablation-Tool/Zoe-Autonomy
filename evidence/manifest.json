@@ -190,8 +190,8 @@
       "sha256": "37e3651ecc17322e7a9a3ab2c570e18371e65bf34dadd3bc5a203fa7b03a19d2"
     },
     "tests/test_capabilities.py": {
-      "bytes": 9869,
-      "sha256": "ce75171a31977fb33455fe84aecf5a7bbf019af9929d5433cf6b3826ea53f907"
+      "bytes": 10954,
+      "sha256": "9004bd2dc09165fa6466c31ba94cc08916f07c5a04ba1485c622fbbc46c4921e"
     },
     "tests/test_experiment.py": {
       "bytes": 3933,

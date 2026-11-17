@@ -183,7 +183,27 @@ for line in sys.stdin:
             audio.setframerate(8000)
             audio.writeframes(b"".join(struct.pack("<h", int(1000 * math.sin(index / 10))) for index in range(4000)))
         self.assertAlmostEqual(media.wav_info(wav_path)["duration_seconds"], .5)
-        paper = Path(__file__).resolve().parents[1] / "paper/zoe-autonomy.pdf"
+        stream = b"BT /F1 18 Tf 72 720 Td (Zoe Autonomy) Tj ET"
+        objects = [
+            b"<< /Type /Catalog /Pages 2 0 R >>",
+            b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>",
+            b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+            f"<< /Length {len(stream)} >>\nstream\n".encode() + stream + b"\nendstream",
+        ]
+        document = bytearray(b"%PDF-1.4\n")
+        offsets = []
+        for number, item in enumerate(objects, 1):
+            offsets.append(len(document))
+            document.extend(f"{number} 0 obj\n".encode() + item + b"\nendobj\n")
+        xref = len(document)
+        document.extend(f"xref\n0 {len(objects) + 1}\n".encode())
+        document.extend(b"0000000000 65535 f \n")
+        for offset in offsets:
+            document.extend(f"{offset:010d} 00000 n \n".encode())
+        document.extend(f"trailer\n<< /Size {len(objects) + 1} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n".encode())
+        paper = self.root / "sample.pdf"
+        paper.write_bytes(document)
         self.assertIn("Zoe Autonomy", media.pdf_text(paper))
         video = self.root / "sample.mp4"
         subprocess.run([
