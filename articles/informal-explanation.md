@@ -25,6 +25,10 @@ The code, paper, evidence, and verification tools are publicly available:
 
 *The five central ideas behind the architecture.*
 
+![Original Zoe-Autonomy conceptual overview supplied for this guide](images/07-zoe-overview-reference.png)
+
+*Original conceptual overview. The implementation's hash chains provide tamper evidence, not authentication.*
+
 ## Starting with the alternatives behind an output
 
 A language model’s output tells us which token was selected. It does not tell us how many other realistic alternatives existed immediately before selection.
@@ -50,6 +54,10 @@ A0.05(S) = 3
 ![Accessible Volume in plain English, including the equation, variable definitions, and a worked threshold example](images/04-accessible-volume.png)
 
 *Accessible Volume counts alternatives above a strict threshold. It measures breadth, not correctness.*
+
+![Original Accessible Volume explanation supplied for this guide](images/05-accessible-volume-reference.jpeg)
+
+*Original reference explanation of the threshold count and its role as the first profile measurement.*
 
 This measures forecast breadth. A small count means the above-threshold forecast is concentrated on a few alternatives. A larger count means more alternatives remain in play.
 
@@ -108,6 +116,10 @@ The autonomy claim belongs to this combination—not to Accessible Volume alone.
 ![Pipeline breakdown for Memory and State, Perception, Proposal, Valuation, Guarding, and Execution](images/03-pipeline-breakdown.png)
 
 *Each stage has a distinct responsibility. Measurement never silently becomes permission.*
+
+![Original conceptual pipeline breakdown supplied for this guide](images/06-pipeline-reference.png)
+
+*Original conceptual pipeline. In this implementation, τ is a probability threshold and δ is a KL policy-effect threshold.*
 
 ## Measuring whether alternatives actually matter
 
