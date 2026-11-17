@@ -230,8 +230,8 @@
       "sha256": "8b8e09d5925104467db12d529ea1da9198bf3dc82b980d9193770d85b482b401"
     },
     "paper/unified/main.tex": {
-      "bytes": 8755,
-      "sha256": "b443a4ded8728258b36334fda687dd07d836dfb8e61a8e1450be4977097b3d49"
+      "bytes": 8769,
+      "sha256": "2620b381aaf77910d7f4fc7dbc1e6103fd392fb6e754bb38eaf72eb8d0d91b7b"
     },
     "paper/unified/sections/01-foundations.tex": {
       "bytes": 20284,
@@ -274,8 +274,8 @@
       "sha256": "c4d4a2bfdffb03bfd87f6ecc89e3cc74f83fe6ea22f27b08f719015f9db98d8f"
     },
     "paper/zoe-autonomy-complete.pdf": {
-      "bytes": 4551610,
-      "sha256": "e90a15af1d865f04e175b5c9a49397c2ea8afdf4d826a4438742abb7984a8713"
+      "bytes": 4551350,
+      "sha256": "6829e723082549eace854607ddf37f4abefbb9e467e1417bac58e10371ae34aa"
     },
     "paper/zoe-autonomy.pdf": {
       "bytes": 459521,
