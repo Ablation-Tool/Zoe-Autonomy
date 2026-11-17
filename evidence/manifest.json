@@ -414,12 +414,12 @@
       "sha256": "4b770f4c53c3d7f05af13c895f8280fdfeba6bb1aaa7c4ef1dc2283214c45b66"
     },
     "paper/zoe-autonomy-operational-profile.pdf": {
-      "bytes": 1102922,
-      "sha256": "280bc671ffe253115b8d553d931570037a1b9b4239c52273840bb7ccb17034fb"
+      "bytes": 1103628,
+      "sha256": "a63b79a376dc803f012e0f01411f2637e75e687aebf4e86a21f28d0e0fecc9a9"
     },
     "paper/zoe-autonomy-operational-profile.tex": {
-      "bytes": 55034,
-      "sha256": "8ad30c854a9330cbb84d9c3710191761abf8868cab444dfa3ce5a14031447414"
+      "bytes": 36520,
+      "sha256": "6f4c740e7246e02345154524bfaadf50a6a76dd52af7536230ec3aa49d14876e"
     }
   },
   "instrument": "zoe-autonomy-artifact-manifest",
