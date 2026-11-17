@@ -21,9 +21,25 @@
       "bytes": 6783,
       "sha256": "a06bc9a67d8daf7cdaffac7e9ce457cfd72bad9b34940fd54b1814fb34b9004f"
     },
+    "articles/images/01-zoe-at-a-glance.png": {
+      "bytes": 99269,
+      "sha256": "63e97109ac5087efa367af0c7fd3a71f0a79c4a1909a14cbc7c46a6949ea8d65"
+    },
+    "articles/images/02-self-governing-loop.png": {
+      "bytes": 116693,
+      "sha256": "94f588a567109c1c2d7d98b91d9a2427e8aa16be46d4dc3a7d22d167948b05af"
+    },
+    "articles/images/03-pipeline-breakdown.png": {
+      "bytes": 126958,
+      "sha256": "7298f22081e007d5a14cfaef59bab164a503f3eaecb0b9948c9fb016e2de8485"
+    },
+    "articles/images/04-accessible-volume.png": {
+      "bytes": 115068,
+      "sha256": "ce978f25c5986095c9af74698cf0b42010e416995bbd9a5eee75bba63eb6bec8"
+    },
     "articles/informal-explanation.md": {
-      "bytes": 10909,
-      "sha256": "68eedabc7d7735a1ca02fc7e7530ee8563361828de4e0fa179a597412f62880e"
+      "bytes": 11892,
+      "sha256": "790333192551da3383068f60eaf57f076ebdf6f31da12c4ebd0dbdb6b1131688"
     },
     "evidence/actuation/emergency-stop.json": {
       "bytes": 275,
@@ -68,6 +84,10 @@
     "pyproject.toml": {
       "bytes": 528,
       "sha256": "a94ddd14f363ff400ce1abad5a1e5ba95735bde30d62b4b0060ba8885e4534af"
+    },
+    "scripts/generate-informal-images.py": {
+      "bytes": 8611,
+      "sha256": "1da56dcf2c69d4cd4f5969b474190bc8625b2515ddbc539b581d52d602d43b1b"
     },
     "scripts/verify-artifacts.py": {
       "bytes": 966,

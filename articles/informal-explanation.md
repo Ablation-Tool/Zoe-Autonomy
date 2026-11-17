@@ -21,6 +21,10 @@ The code, paper, evidence, and verification tools are publicly available:
 - [Zoe-Autonomy repository](https://github.com/Ablation-Tool/Zoe-Autonomy)
 - [Read the paper](https://github.com/Ablation-Tool/Zoe-Autonomy/blob/main/paper/zoe-autonomy.pdf)
 
+![Zoe-Autonomy at a glance: self-directed goals, the decision loop, the safe base experiment, owner-granted actuation, and verifiable evidence](images/01-zoe-at-a-glance.png)
+
+*The five central ideas behind the architecture.*
+
 ## Starting with the alternatives behind an output
 
 A language model’s output tells us which token was selected. It does not tell us how many other realistic alternatives existed immediately before selection.
@@ -42,6 +46,10 @@ At a threshold of 0.05, three tokens exceed the cutoff, so:
 ```text
 A0.05(S) = 3
 ```
+
+![Accessible Volume in plain English, including the equation, variable definitions, and a worked threshold example](images/04-accessible-volume.png)
+
+*Accessible Volume counts alternatives above a strict threshold. It measures breadth, not correctness.*
 
 This measures forecast breadth. A small count means the above-threshold forecast is concentrated on a few alternatives. A larger count means more alternatives remain in play.
 
@@ -82,6 +90,10 @@ Executeα
 ∘ M(Sₜ,Cₜ)
 ```
 
+![The complete self-governing loop and the distinction between the zero-external-action base experiment and owner-granted actuation](images/02-self-governing-loop.png)
+
+*The complete equation joins internal self-government with separately authorized external operations.*
+
 Zoe supplies the surrounding capabilities that make this composition operational:
 
 - **Cog** provides complete token-probability distributions.
@@ -92,6 +104,10 @@ Zoe supplies the surrounding capabilities that make this composition operational
 - **Evidence chains** preserve the resulting measurements, decisions, and state transitions.
 
 The autonomy claim belongs to this combination—not to Accessible Volume alone.
+
+![Pipeline breakdown for Memory and State, Perception, Proposal, Valuation, Guarding, and Execution](images/03-pipeline-breakdown.png)
+
+*Each stage has a distinct responsibility. Measurement never silently becomes permission.*
 
 ## Measuring whether alternatives actually matter
 
