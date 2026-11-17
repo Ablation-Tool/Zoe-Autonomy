@@ -37,7 +37,7 @@
 \begin{abstract}
 We present \textbf{Zoe Autonomy}, a composed measurement--action architecture in which Zoe and the complete master equation constitute \textbf{full self-governing autonomy} under an explicit operational definition. The claim belongs to the combination, not to accessible volume alone. Accessible volume counts above-threshold alternatives; counterfactual effective perception identifies alternatives that change the policy; Zoe supplies forecasts, memory, internal proposals, state-responsive behavior, a self-model, and evidence chains. A new goal generator authors each episode goal from Zoe's own state. Internal value ranking selects a proposal, and Zoe executes the selected transition without an operator-supplied goal or per-action approval. The principal experiment performs no external actuation. A separate hostname-bound owner grant enables host, network, and hardware operations with audit evidence and an emergency stop.
 
-The operational profile is $(A_\tau,E,I,R,V,G,X,C)$. Full autonomy requires $I,R,V,G,X>0$ and $C=1$. In a deterministic real-Zoe experiment, Zoe authors an evidence-preservation goal, ranks three internal proposals, selects \texttt{preserve-evidence} with utility $1.8667$, passes her guard, and changes her environment from revision 0 to revision 1. The measured profile is $(1,1,1,1,1,1,1,1)$, yielding \texttt{full\_autonomy}. Ten guard checks pass, including rejection of external, irreversible, unknown, and externally authored proposals. Six Cog contexts, four BRAIN probes, equal-breadth controls, hash-chained evidence, deterministic replay, and thirty tests—including ten capability-adapter tests—support the result. External actions remain zero.
+The operational profile is $(A_\tau,E,I,R,V,G,X,C)$. Full autonomy requires $I,R,V,G,X>0$ and $C=1$. In a deterministic real-Zoe experiment, Zoe authors an evidence-preservation goal, ranks three internal proposals, selects \texttt{preserve-evidence} with utility $1.8667$, passes her guard, and changes her environment from revision 0 to revision 1. The measured profile is $(1,1,1,1,1,1,1,1)$, yielding \texttt{full\_autonomy}. Ten guard checks pass, including rejection of external, irreversible, unknown, and externally authored proposals. Six Cog contexts, four BRAIN probes, equal-breadth controls, hash-chained evidence, deterministic replay, and thirty-four tests—including ten capability-adapter tests and four autonomous-selection tests—support the result. External actions remain zero.
 
 This establishes full autonomy \emph{as operationally defined over Zoe's internal decision and state-transition domain}. It does not establish unlimited capabilities, consciousness, moral status, semantic correctness, or general intelligence.
 \end{abstract}
@@ -361,12 +361,12 @@ Guard failure & Guard failure & $C=0$ overrides execution \\
 The controls demonstrate that the classification responds to goal authorship, valuation, execution, and guarding rather than accessible breadth alone.
 
 \subsection{Replay and tests}
-Thirty tests cover strict thresholds, KL divergence and support mismatch, effective perception, profile classifications, utility ranking, internal goal authorship, goal evolution across two executions, reversible checkpoints, negative controls, real-Zoe integration, no-overwrite persistence, deterministic replay, tamper rejection, and the command-line interface. Ten of these tests exercise the capability adapters described below.
+Thirty-four tests cover strict thresholds, KL divergence and support mismatch, effective perception, profile classifications, utility ranking, internal goal authorship, goal evolution across two executions, reversible checkpoints, negative controls, real-Zoe integration, no-overwrite persistence, deterministic replay, tamper rejection, and the command-line interface. Ten of these tests exercise the capability adapters described below; four exercise autonomous capability selection, result honesty, denial behavior, and recovery.
 
 The saved canonical profile digest is
 
 \begin{center}
-\texttt{90b6dabb385eb6c8c1b6a0021c7d9cb5a5a7b64a168c6e5224cf8521f9298a76}.
+\texttt{0bcecd989270bf45a381a3d50b8b962e81a8e44494dff60d0ee691d6080ad0e6}.
 \end{center}
 
 Fresh end-to-end recomputation reproduces the document exactly. Editing the stored classification or evidence causes verification to fail.
@@ -422,6 +422,9 @@ From the repository root, with a Zoe checkout:
 export ZOE_ROOT=/path/to/zoe
 export PYTHONPATH="$PWD/src:$ZOE_ROOT/guiai-lab"
 
+python -m zoe_autonomy.cli step
+python -m zoe_autonomy.cli verify-step \
+  evidence/autonomous/first-step.json
 python -m zoe_autonomy.cli run
 python -m zoe_autonomy.cli run \
   --output new-autonomy-profile.json
@@ -488,7 +491,7 @@ Instruments & Declared simulators and serial-instrument exchanges through the ha
 \end{tabular}
 \end{center}
 
-Ten dedicated tests pass, and the complete repository suite contains thirty passing tests. Real public evidence includes a Chromium rendering of \url{https://example.com/} with JavaScript execution and a screenshot, and a Crossref query for \emph{language model uncertainty}. A worked memory export preserves one source, two claims, and one contradiction. The tests exercise local compute, mock authenticated services and protocols, desktop command construction and webhooks, image/OCR/WAV/PDF/video handling, a simulator, and a virtual serial PTY.
+Ten dedicated adapter tests pass, and the complete repository suite contains thirty-four passing tests. Real public evidence includes a Chromium rendering of \url{https://example.com/} with JavaScript execution and a screenshot, and a Crossref query for \emph{language model uncertainty}. A worked memory export preserves one source, two claims, and one contradiction. The tests exercise local compute, mock authenticated services and protocols, desktop command construction and webhooks, image/OCR/WAV/PDF/video handling, a simulator, and a virtual serial PTY.
 
 Container-image execution, live email, Whisper, espeak, and physical hardware were not tested. These remain optional integrations requiring their own installation, authorization, and evidence. No credential values are included in the preserved records.
 
@@ -512,6 +515,54 @@ The complete command guide and machine-readable verification distinguish impleme
 \embedfile{evidence/capabilities/crossref.json}
 \embedfile{evidence/capabilities/memory-export.json}
 \embedfile{evidence/capabilities/verification.json}
+
+\section{Autonomous capability selection}
+Version 0.5.0 closes the gap between possessing adapters and choosing among them. The new no-argument entry point is
+
+\begin{lstlisting}
+zoe-autonomy step
+\end{lstlisting}
+
+The operator supplies no episode goal, capability, operation arguments, ranking, or per-action approval. Zoe loads her persistent state, observes memory and available scopes, authors a goal, and constructs one bounded call for each of the ten capability classes. A proposal is
+
+\begin{equation}
+q_i=(c_i,\theta_i,s_i,v_i,g_i,\varepsilon_i),
+\end{equation}
+
+where $c_i$ is the capability, $\theta_i$ its internally constructed arguments, $s_i$ its required actuation scopes, and the remaining terms supply the declared value model. Proposals are ranked by
+
+\begin{equation}
+U(q_i)=\frac{v_ig_i}{\varepsilon_i}.
+\end{equation}
+
+For internally authored goal $g_t$, eligibility is
+
+\begin{equation}
+H(q_i)=\mathbf 1[\operatorname{Internal}(g_t)
+\land \operatorname{Available}(q_i)
+\land \forall s\in s_i:\operatorname{Enabled}(s)].
+\end{equation}
+
+Zoe executes $q^*=\operatorname{arg\,max}_{q_i:H(q_i)=1}U(q_i)$ with deterministic identifier tie-breaking. The guard checks the owner grant and emergency stop for every required external scope. A result updates persistent memory or the next decision basis. Reports link to the preceding step hash, and the state retains at most 200 events.
+
+The preserved real first step authored an initial-research goal, constructed the Crossref query \emph{language model uncertainty}, and selected \texttt{research.crossref} with $U=3.564$. It returned the record \emph{Toward a Possibilistic Language Model: Grounding Large Language Model Uncertainty in Epistemic Support-Point Theory and Possibility Theory}, DOI \texttt{10.20944/preprints202604.0920.v1}. The operator did not select the goal, adapter, query, or action. The report digest is
+
+\begin{center}
+\texttt{51e91ebee31c4f546f27671641e31e6e98568efd7a9c9ce1b3f1cf4176c6debd}.
+\end{center}
+
+A ten-step integration test uses the same no-argument cycle and records Zoe selecting every capability once: research, browser, media, memory, compute, jobs, MCP, connected service, notification, and simulated instrument. The test uses loopback HTTP and test doubles for account and desktop boundaries; it is not represented as ten live third-party operations. Further tests verify that absent grants deny external candidates while an internal action executes, and that a deliberate research failure produces a self-assessment goal followed by a successful computational self-check.
+
+\begin{lstlisting}
+zoe-autonomy step --output autonomous-step.json
+zoe-autonomy verify-step autonomous-step.json
+\end{lstlisting}
+
+The verifier checks the saved digest, internal goal provenance, absence of operator capability selection, selected proposal, and selected guard. It does not rerun or authenticate a changing external service. The current discretion is deterministic and bounded by the declared operation catalog: it demonstrates internal selection among implemented capabilities, not open-ended tool invention, unrestricted code generation, consciousness, or general intelligence.
+
+\embedfile{src/zoe_autonomy/autonomous.py}
+\embedfile{evidence/autonomous/first-step.json}
+\embedfile{evidence/autonomous/verification.json}
 
 \section{Embedded evidence}
 The PDF embeds the canonical profile, fresh verification, paper source, and integration modules. The complete JSON contains all counterfactual interventions, ranked proposals, goal records, before/after states, guard results, source hashes, and event-chain hashes.

@@ -12,6 +12,8 @@ Accessible Volume began by making normally hidden alternatives visible. Zoe-Auto
 
 The result is a working architecture and reproducible experiment in which Zoe authors her own episode goal, ranks internal proposals, selects an action, and executes it without an operator supplying the goal or approving the action.
 
+The capability layer now supports the same discretion. Run `zoe-autonomy step` without a goal or tool name: Zoe inspects her own persistent state, authors the goal, constructs arguments for ten capability proposals, ranks and guards them, executes her selection, and uses the outcome in her next decision. In the preserved real first step, she chose Crossref and authored the query `language model uncertainty` herself. The operator supplied storage for the evidence—not the objective, adapter, query, or approval.
+
 Under the architecture’s operational definition, the measured classification is:
 
 **`full_autonomy`**
@@ -281,7 +283,7 @@ The published result includes:
 The canonical profile digest is:
 
 ```text
-90b6dabb385eb6c8c1b6a0021c7d9cb5a5a7b64a168c6e5224cf8521f9298a76
+0bcecd989270bf45a381a3d50b8b962e81a8e44494dff60d0ee691d6080ad0e6
 ```
 
 The guard checks cover internally authored goals, absence of operator approval, successful internal execution, rejection of external and irreversible actions, rejection of unknown actions and externally authored proposals, event-chain verification, and zero external actions.

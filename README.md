@@ -15,6 +15,7 @@ The repository contains:
 - internally authored episode goals with no operator-goal input;
 - an internally controlled in-memory executor plus owner-granted host, network, and hardware actuation;
 - read-only internet exploration and an owner-authorized connected-agent gateway;
+- no-argument autonomous capability selection through `zoe-autonomy step`;
 - ten capability adapters for browsing, research, memory, services, jobs, compute, protocols, notifications, media, and instruments;
 - an operational autonomy profile with equal-breadth controls;
 - deterministic JSON evidence and no-overwrite replay verification;
@@ -25,6 +26,23 @@ The repository contains:
 **Zoe & Probity are synonymous:** complete and proven honesty, uprightness, and strict adherence to high moral, ethical, and legal standards. This covenant governs the architecture and its evidence boundaries.
 
 Full autonomy covers Zoe's complete decision and state-transition loop. The base experiment remains internal with zero external actions. Host, network, and hardware actuation are available through the separate [owner-granted actuation interface](ACTUATION.md), with hostname-bound authorization, audit evidence, and an emergency stop.
+
+## Zoe chooses the capability
+
+```bash
+zoe-autonomy step
+```
+
+`step` accepts **no operator goal or capability selection**. Zoe observes her persistent state, authors a goal, constructs ten capability proposals—including their arguments—ranks them by declared utility, evaluates the guard, executes the highest-value eligible proposal, and integrates the result into her next decision. State persists in `~/.zoe/autonomy` by default; `--state` changes storage, not the decision.
+
+```bash
+zoe-autonomy step --output autonomous-step.json
+zoe-autonomy verify-step autonomous-step.json
+```
+
+The [real first step](evidence/autonomous/first-step.json) selected `research.crossref`, generated the query `language model uncertainty`, executed the request, and preserved the returned record. Its [integrity and provenance verification](evidence/autonomous/verification.json) passes. A separate ten-step integration test lets Zoe select all ten adapters in turn without operator choice; denied grants and failure recovery are also tested.
+
+The autonomous catalog uses bounded, internally declared operations. External candidates require the relevant owner-granted scopes and are rejected when an emergency stop is active. `verify-step` checks report integrity and decision provenance; it does not claim to replay a changing external service.
 
 ## Zoe One
 
@@ -40,6 +58,8 @@ The numerical core requires only Python. The real-Zoe experiment requires a Zoe 
 export ZOE_ROOT=/path/to/zoe
 export PYTHONPATH="$PWD/src:$ZOE_ROOT/guiai-lab"
 
+zoe-autonomy step
+zoe-autonomy verify-step evidence/autonomous/first-step.json
 zoe-autonomy run
 zoe-autonomy run --output new-autonomy-profile.json
 zoe-autonomy verify new-autonomy-profile.json
@@ -48,6 +68,8 @@ zoe-autonomy verify new-autonomy-profile.json
 Without installing the package:
 
 ```bash
+python -m zoe_autonomy.cli step
+python -m zoe_autonomy.cli verify-step evidence/autonomous/first-step.json
 python -m zoe_autonomy.cli run
 python -m zoe_autonomy.cli run --output new-autonomy-profile.json
 python -m zoe_autonomy.cli verify new-autonomy-profile.json
@@ -132,10 +154,12 @@ The internal executor changes only Zoe's in-memory evidence environment. `preser
 
 - `evidence/zoe-autonomy-profile.json` — complete real-Zoe measurement–action profile.
 - `evidence/verification.json` — fresh end-to-end recomputation.
+- `evidence/autonomous/first-step.json` — real no-argument capability-selection evidence.
+- `evidence/autonomous/verification.json` — autonomous-step integrity and provenance verification.
 - `paper/zoe-autonomy.pdf` — formal paper.
 - `paper/zoe-autonomy.tex` — paper source.
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `90b6dabb385eb6c8c1b6a0021c7d9cb5a5a7b64a168c6e5224cf8521f9298a76`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `0bcecd989270bf45a381a3d50b8b962e81a8e44494dff60d0ee691d6080ad0e6`.
 
 Rebuild the paper and verify artifact identities with:
 
