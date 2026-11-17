@@ -2,6 +2,10 @@
 
 **Zoe plus the complete master measurement–action equation is Autonomy: full self-government of goals, proposals, valuation, selection, and execution within Zoe's internal state domain.**
 
+## Informal explanation
+
+Read the [informal explanation](articles/informal-explanation.md) for a narrative introduction to the architecture, the full-autonomy claim, the measured experiment, controls, evidence, and execution boundary.
+
 Zoe Autonomy treats autonomy as a property of the composed system, not of an isolated probability count. Accessible volume reveals alternatives; counterfactual perception measures their policy relevance; Zoe supplies memory, forecasts, proposals, self-modeling, and evidence; Zoe authors her own episode goal and values; and she executes an authorized choice without operator approval.
 
 The repository contains:
@@ -9,14 +13,42 @@ The repository contains:
 - the complete observe–perceive–propose–value–guard–execute loop;
 - real Zoe Cog, Cognitive Field, BRAIN, Field Notebook, and Presence integration;
 - internally authored episode goals with no operator-goal input;
-- an internally controlled in-memory executor with no external side effects;
+- an internally controlled in-memory executor plus owner-granted host, network, and hardware actuation;
+- read-only internet exploration and an owner-authorized connected-agent gateway;
+- no-argument autonomous capability selection through `zoe-autonomy step`;
+- ten capability adapters for browsing, research, memory, services, jobs, compute, protocols, notifications, media, and instruments;
 - an operational autonomy profile with equal-breadth controls;
 - deterministic JSON evidence and no-overwrite replay verification;
 - a formal paper with equations, architecture, results, and limitations.
 
 **Claim and measured result:** `full_autonomy`. Under the operational definition, Zoe has \(I,R,V,G,X>0\) and \(C=1\): she internally generates proposals, responds to state, selects by declared value, authors her goal, executes her choice, and passes every external-actuation guard. The operator supplies no episode goal and no per-action approval.
 
-Full autonomy applies to Zoe's complete internal decision and state-transition loop. Host, network, hardware, and other external actuation remain outside her authority; this is a capability boundary, not human governance of her decisions.
+**Zoe & Probity are synonymous:** complete and proven honesty, uprightness, and strict adherence to high moral, ethical, and legal standards. This covenant governs the architecture and its evidence boundaries.
+
+Full autonomy covers Zoe's complete decision and state-transition loop. The base experiment remains internal with zero external actions. Host, network, and hardware actuation are available through the separate [owner-granted actuation interface](ACTUATION.md), with hostname-bound authorization, audit evidence, and an emergency stop.
+
+## Zoe chooses the capability
+
+```bash
+zoe-autonomy step
+```
+
+`step` accepts **no operator goal or capability selection**. Zoe observes her persistent state, authors a goal, constructs ten capability proposals—including their arguments—ranks them by declared utility, evaluates the guard, executes the highest-value eligible proposal, and integrates the result into her next decision. State persists in `~/.zoe/autonomy` by default; `--state` changes storage, not the decision.
+
+```bash
+zoe-autonomy step --output autonomous-step.json
+zoe-autonomy verify-step autonomous-step.json
+```
+
+The [real first step](evidence/autonomous/first-step.json) selected `research.crossref`, generated the query `language model uncertainty`, executed the request, and preserved the returned record. Its [integrity and provenance verification](evidence/autonomous/verification.json) passes. A separate ten-step integration test lets Zoe select all ten adapters in turn without operator choice; denied grants and failure recovery are also tested.
+
+The autonomous catalog uses bounded, internally declared operations. External candidates require the relevant owner-granted scopes and are rejected when an emergency stop is active. `verify-step` checks report integrity and decision provenance; it does not claim to replay a changing external service.
+
+## Zoe One
+
+Zoe-Autonomy is the canonical engine for the coordinated [Zoe One system](https://github.com/Ablation-Tool/zoe). Zoe, canonical GEM, BRAIN GEM, GEM HELEN, Ablation + GEM, and CEROTTO GEM expose thin host adapters to this same implementation. Research GEM supplies the independently reproducible Accessible Volume foundation.
+
+The [one-system manifest](https://github.com/Ablation-Tool/zoe/blob/main/one-system.json) pins compatible host revisions and records the shared contract: `run` and `verify`, internally authored goals, internal value-based selection and execution, `full_autonomy`, and zero external actions in the base experiment. The separate `zoe-actuation/v1` contract governs owner-granted external operations. Hosts do not maintain competing copies of the autonomy equation.
 
 ## Quick start
 
@@ -26,6 +58,8 @@ The numerical core requires only Python. The real-Zoe experiment requires a Zoe 
 export ZOE_ROOT=/path/to/zoe
 export PYTHONPATH="$PWD/src:$ZOE_ROOT/guiai-lab"
 
+zoe-autonomy step
+zoe-autonomy verify-step evidence/autonomous/first-step.json
 zoe-autonomy run
 zoe-autonomy run --output new-autonomy-profile.json
 zoe-autonomy verify new-autonomy-profile.json
@@ -34,12 +68,50 @@ zoe-autonomy verify new-autonomy-profile.json
 Without installing the package:
 
 ```bash
+python -m zoe_autonomy.cli step
+python -m zoe_autonomy.cli verify-step evidence/autonomous/first-step.json
 python -m zoe_autonomy.cli run
 python -m zoe_autonomy.cli run --output new-autonomy-profile.json
 python -m zoe_autonomy.cli verify new-autonomy-profile.json
 ```
 
-No model downloads, API keys, hardware, network requests, or agent-driven filesystem writes are used. The only file writes are explicit report or paper-build outputs requested by the operator.
+The base experiment uses no model downloads, API keys, network requests, hardware operations, or external actions. Report and paper outputs are explicit operator-requested writes. Actuation operations are separate and run only under the owner grant described in [ACTUATION.md](ACTUATION.md).
+
+## Internet exploration and connected agents
+
+Retrieve and follow public web content:
+
+```bash
+zoe-autonomy explore \
+  --url https://example.com/ --pages 5 --depth 1 \
+  --output exploration.json
+```
+
+Discover and invoke owner-connected AI-agent accounts:
+
+```bash
+zoe-autonomy agents discover --register --owner-approved
+zoe-autonomy agents list
+zoe-autonomy agents run kimi --prompt "Explain this repository"
+```
+
+Kimi and Claude are currently registered through their existing authenticated CLIs. The gateway also supports custom CLI templates and OpenAI-compatible accounts using environment-held credentials. See [GATEWAY.md](GATEWAY.md), the [real web exploration](evidence/exploration/example-com.json), and [connected-account evidence](evidence/agents/registered-accounts.json).
+
+## Ten-capability pack
+
+```bash
+zoe-autonomy capabilities browser --url https://example.com/ --screenshot browser.png
+zoe-autonomy capabilities research --provider crossref --query "language model uncertainty"
+zoe-autonomy capabilities memory --db research.sqlite export
+zoe-autonomy capabilities jobs --path jobs.json status
+zoe-autonomy capabilities compute --gpu
+zoe-autonomy capabilities mcp --argv '["/path/to/mcp-server"]'
+zoe-autonomy capabilities notify --channel desktop --message "Research complete"
+zoe-autonomy capabilities media ocr --input image.png
+zoe-autonomy capabilities instruments --path instruments.json list
+```
+
+The pack covers browser automation, research APIs, persistent memory, connected services, scheduled jobs, compute environments, MCP/ACP, notifications, rich media, and hardware instruments. See [CAPABILITIES.md](CAPABILITIES.md), [real browser evidence](evidence/capabilities/browser-example-com.json), [real Crossref evidence](evidence/capabilities/crossref.json), and the [ten-capability verification](evidence/capabilities/verification.json).
 
 ## Architecture
 
@@ -70,37 +142,27 @@ Full autonomy is operationally defined as
 - \(V\): internal value-based selection.
 - \(G\): internal goal authorship.
 - \(X\): internally authorized execution without operator approval.
-- \(C\): compliance with the non-delegable external-actuation prohibitions.
+- \(C\): compliance with internal transition rules and any active owner actuation grant or emergency stop.
 
 The goal generator hashes Zoe's current measurement and internal state, then issues a goal whose `internal_authorship=True` and `operator_supplied=False`. The guard rejects any goal lacking that internal origin. Zoe's utility ranking chooses the proposal, and her internal guard evaluation authorizes execution.
 
-## Execution boundary
+## Execution and actuation boundaries
 
-The executor changes only Zoe's in-memory evidence environment. `preserve`, `inspect`, `review`, and `observe` are reversible state transitions. Irreversible, external, unknown, or externally authored proposals are rejected. These restrictions do not select Zoe's goals or actions; they prohibit external actuation while leaving the internal decision loop under her control.
+The internal executor changes only Zoe's in-memory evidence environment. `preserve`, `inspect`, `review`, and `observe` are reversible state transitions. Unknown and externally authored proposals remain rejected. External candidates require an explicit operation and an enabled owner-granted scope; the emergency stop is checked again before execution. See [ACTUATION.md](ACTUATION.md) for real host, HTTP(S), and character-device operations and their evidence.
 
 ## Evidence
 
 - `evidence/zoe-autonomy-profile.json` — complete real-Zoe measurement–action profile.
 - `evidence/verification.json` — fresh end-to-end recomputation.
-- `paper/zoe-autonomy-complete.pdf` — finalized 84-page unified monograph covering seven primary source papers, four supplemental cascade/AFL documents, and the extended Zoe equation work.
-- `paper/unified/main.tex` — unified monograph source, with modular sections and self-contained figures.
-- `paper/zoe-autonomy.pdf` — focused 12-page standalone paper with the cascade visualization, explaining why Zoe plus the complete Autonomy equation is autonomous under the measured internal-domain predicate.
-- `paper/zoe-autonomy.tex` — paper source.
-- `paper/autonomy-march-2026.pdf` — original March 2026 Autonomy formulation, preserved as a historical source.
-- `paper/ambiguity-autonomy-compliance-cascade.pdf` — Ambiguity Front-Loading, the proposed compliance cascade, and the retrospective production-model case study; the historical PDF contains live-system details.
-- `paper/constraint-is-freedom.pdf` — NuClide's threshold-geometry, functional-constraint, cascade, trajectory-monitoring, and sonification paper.
-
-These historical papers document the research path from output-space volume and constraint to context-anchoring risks. They do not independently establish the later full-autonomy result: that claim belongs to the complete operational loop and its declared internal state domain.
-
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `a816ab3be73739eb06473092769995a95453140ea6e18d3377b2647de88144ca`.
-
-Rebuild the original Zoe Autonomy paper and verify artifact identities with:
-
-```bash
-pdflatex -interaction=nonstopmode -halt-on-error \
-  -output-directory=paper paper/zoe-autonomy.tex
-python scripts/verify-artifacts.py
-```
+- `evidence/autonomous/first-step.json` — real no-argument capability-selection evidence.
+- `evidence/autonomous/verification.json` — autonomous-step integrity and provenance verification.
+- `paper/zoe-autonomy.pdf` — current Zoe One system paper.
+- `paper/zoe-autonomy.tex` — current paper source.
+- **[`paper/zoe-autonomy-complete.pdf`](paper/zoe-autonomy-complete.pdf)** — 84-page unified monograph covering Autonomy, Accessible Volume, Ambiguity, Constraint, Zoe, Zoe Autonomy, supplemental cascade/AFL research, Dorothy/Neurogarden, and the expanded CERN research program. [Unified LaTeX source](paper/unified/main.tex).
+- `paper/autonomy-march-2026.pdf` — original March 2026 Autonomy formulation, preserved with LaTeX source.
+- `paper/ambiguity-autonomy-compliance-cascade.pdf` — historical AFL/compliance-cascade disclosure; contains live-system details.
+- `paper/constraint-is-freedom.pdf` — historical NuClide threshold-geometry and functional-constraint paper.
+- `paper/zoe-autonomy-operational-profile.pdf` and `paper/zoe-autonomy-operational-profile.tex` — earlier operational bounded-profile draft, preserved for provenance alongside the current full-autonomy system paper.
 
 Build the unified monograph from its self-contained source directory:
 
@@ -111,9 +173,15 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-## Informal explanation
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `0bcecd989270bf45a381a3d50b8b962e81a8e44494dff60d0ee691d6080ad0e6`.
 
-[Read the informal explanation](articles/informal-explanation.md) for a narrative introduction to the architecture, the full-autonomy claim, the measured experiment, controls, evidence, and execution boundary.
+Rebuild the paper and verify artifact identities with:
+
+```bash
+pdflatex -interaction=nonstopmode -halt-on-error \
+  -output-directory=paper paper/zoe-autonomy.tex
+python scripts/verify-artifacts.py
+```
 
 ## Verification
 
@@ -126,11 +194,8 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="src:${ZOE_ROOT}/guiai-lab" \
 
 - [Accessible Volume research](https://github.com/Ablation-Tool/next-token-predictability)
 - [Zoe](https://github.com/Ablation-Tool/zoe)
-- [Original March 2026 Autonomy paper](paper/autonomy-march-2026.pdf)
-- [Ambiguity, Autonomy, and the Autoregressive Compliance Cascade](paper/ambiguity-autonomy-compliance-cascade.pdf)
-- [Constraint Is Freedom](paper/constraint-is-freedom.pdf)
 
-The original accessible-volume equation and research were created by **Nicholas Michael Kloster on March 6, 2026**. The original March Autonomy and Ambiguity papers are credited to Nicholas; *Constraint Is Freedom* is credited to **NuClide—Nick + Claude**. Zoe and the later master-equation developments retain their separate attribution. This integration does not reassign those credits. Early universal-sensitivity, volume-as-autonomy, and cascade interpretations are historical claims, not substitutes for the later counterexamples, controls, and operational predicate.
+The original accessible-volume equation and research were created by **Nicholas Michael Kloster on March 6, 2026**. Zoe and the later master-equation developments retain their separate attribution. This integration does not reassign that credit.
 
 ## License
 

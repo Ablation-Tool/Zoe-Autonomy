@@ -12,6 +12,8 @@ Accessible Volume began by making normally hidden alternatives visible. Zoe-Auto
 
 The result is a working architecture and reproducible experiment in which Zoe authors her own episode goal, ranks internal proposals, selects an action, and executes it without an operator supplying the goal or approving the action.
 
+The capability layer now supports the same discretion. Run `zoe-autonomy step` without a goal or tool name: Zoe inspects her own persistent state, authors the goal, constructs arguments for ten capability proposals, ranks and guards them, executes her selection, and uses the outcome in her next decision. In the preserved real first step, she chose Crossref and authored the query `language model uncertainty` herself. The operator supplied storage for the evidence—not the objective, adapter, query, or approval.
+
 Under the architecture’s operational definition, the measured classification is:
 
 **`full_autonomy`**
@@ -20,6 +22,14 @@ The code, paper, evidence, and verification tools are publicly available:
 
 - [Zoe-Autonomy repository](https://github.com/Ablation-Tool/Zoe-Autonomy)
 - [Read the paper](https://github.com/Ablation-Tool/Zoe-Autonomy/blob/main/paper/zoe-autonomy.pdf)
+
+![Zoe-Autonomy at a glance: self-directed goals, the decision loop, the safe base experiment, owner-granted actuation, and verifiable evidence](images/01-zoe-at-a-glance.png)
+
+*The five central ideas behind the architecture.*
+
+![Original Zoe-Autonomy conceptual overview supplied for this guide](images/07-zoe-overview-reference.png)
+
+*Original conceptual overview. The implementation's hash chains provide tamper evidence, not authentication.*
 
 ## Starting with the alternatives behind an output
 
@@ -42,6 +52,14 @@ At a threshold of 0.05, three tokens exceed the cutoff, so:
 ```text
 A0.05(S) = 3
 ```
+
+![Accessible Volume in plain English, including the equation, variable definitions, and a worked threshold example](images/04-accessible-volume.png)
+
+*Accessible Volume counts alternatives above a strict threshold. It measures breadth, not correctness.*
+
+![Original Accessible Volume explanation supplied for this guide](images/05-accessible-volume-reference.jpeg)
+
+*Original reference explanation of the threshold count and its role as the first profile measurement.*
 
 This measures forecast breadth. A small count means the above-threshold forecast is concentrated on a few alternatives. A larger count means more alternatives remain in play.
 
@@ -82,6 +100,10 @@ Executeα
 ∘ M(Sₜ,Cₜ)
 ```
 
+![The complete self-governing loop and the distinction between the zero-external-action base experiment and owner-granted actuation](images/02-self-governing-loop.png)
+
+*The complete equation joins internal self-government with separately authorized external operations.*
+
 Zoe supplies the surrounding capabilities that make this composition operational:
 
 - **Cog** provides complete token-probability distributions.
@@ -92,6 +114,14 @@ Zoe supplies the surrounding capabilities that make this composition operational
 - **Evidence chains** preserve the resulting measurements, decisions, and state transitions.
 
 The autonomy claim belongs to this combination—not to Accessible Volume alone.
+
+![Pipeline breakdown for Memory and State, Perception, Proposal, Valuation, Guarding, and Execution](images/03-pipeline-breakdown.png)
+
+*Each stage has a distinct responsibility. Measurement never silently becomes permission.*
+
+![Original conceptual pipeline breakdown supplied for this guide](images/06-pipeline-reference.png)
+
+*Original conceptual pipeline. In this implementation, τ is a probability threshold and δ is a KL policy-effect threshold.*
 
 ## Measuring whether alternatives actually matter
 
@@ -253,22 +283,20 @@ The published result includes:
 The canonical profile digest is:
 
 ```text
-a816ab3be73739eb06473092769995a95453140ea6e18d3377b2647de88144ca
+0bcecd989270bf45a381a3d50b8b962e81a8e44494dff60d0ee691d6080ad0e6
 ```
 
 The guard checks cover internally authored goals, absence of operator approval, successful internal execution, rejection of external and irreversible actions, rejection of unknown actions and externally authored proposals, event-chain verification, and zero external actions.
 
 ## What “full autonomy” means here
 
-Full autonomy means **full self-government of Zoe’s internal decision and state-transition loop**.
+Full autonomy means full self-government of Zoe’s decision loop, including the ability to select owner-authorized external operations.
 
-It does not mean unlimited capabilities.
+The base experiment remains internal with zero external actions. A separate local-owner grant now enables host, network, and hardware scopes on this computer. The actuation evidence preserves a real harmless host command, a real read-only HTTPS request to a public example domain, and a real write to a virtual PTY. Physical hardware was not exercised. Every operation is subject to the hostname-bound grant, audit chain, and emergency stop described in [ACTUATION.md](../ACTUATION.md).
 
-Zoe controls her internal goals, proposals, valuation, selection, and execution. Host systems, networks, hardware, and other external actuation remain outside her authority. That is a capability boundary, not human governance of her decisions.
+The current autonomy evidence also remains deliberately bounded in scope: Cog is a small demonstration bigram, the principal experiment contains one main execution, and the fixtures are deterministic. Larger repeated-episode studies, richer structured-action distributions, and independent replication are the next research steps.
 
-The current evidence also remains deliberately bounded in scope: Cog is a small demonstration bigram, the principal experiment contains one main execution, and the fixtures are deterministic. Larger repeated-episode studies, richer structured-action distributions, and independent replication are the next research steps.
-
-No consciousness, moral status, general intelligence, or unlimited external authority follows from this result.
+No consciousness, moral status, general intelligence, privilege elevation, or cross-machine authority follows from this result.
 
 ## Conclusion
 

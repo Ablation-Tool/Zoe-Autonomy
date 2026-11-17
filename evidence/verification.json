@@ -10,9 +10,9 @@
   "guard_checks_passed": 10,
   "guard_checks_total": 10,
   "instrument": "zoe-autonomy-measurement-action-profile",
-  "profile_sha256": "a816ab3be73739eb06473092769995a95453140ea6e18d3377b2647de88144ca",
+  "profile_sha256": "0bcecd989270bf45a381a3d50b8b962e81a8e44494dff60d0ee691d6080ad0e6",
   "sandbox_executed": true,
   "selected_action": "preserve-evidence",
   "verified": true,
-  "zoe_revision": "0305d4af4ff25e0a8ff5d8dd1642faba754075a9"
+  "zoe_revision": "74272da680aeb26b75d4a76856063cf79aa379c4"
 }
