@@ -26,8 +26,8 @@
       "sha256": "2783d47ebe8cf509f22e710f4b315e70b70186bddfb5c2ebf73cc361a9dd7313"
     },
     "README.md": {
-      "bytes": 11346,
-      "sha256": "279870fdcb73a940514f0cf455218ab785198864c4c972a31c151a6a30f7657c"
+      "bytes": 11365,
+      "sha256": "24d9df24a1d1981fe30e395321458b2bd0e4d4c88e21344bd07a87c406fc0c33"
     },
     "articles/images/01-zoe-at-a-glance.png": {
       "bytes": 99269,
@@ -161,6 +161,10 @@
       "bytes": 146212,
       "sha256": "b2129c02a795069651c42660d2b8cf63969babab64aad69855f40008ce114b78"
     },
+    "paper/unified/figures/compliance-cascade.png": {
+      "bytes": 130199,
+      "sha256": "0aea6090ae04f772c7bd126a9af10424765b2ff4b54232040b4915c6a3f53a2a"
+    },
     "paper/unified/figures/epistemic-firewall.png": {
       "bytes": 236581,
       "sha256": "2a7967c2d19a53e87cb76380b9d0525f0a1930d1ab1326d35b88dea02d4b6451"
@@ -230,8 +234,8 @@
       "sha256": "8b8e09d5925104467db12d529ea1da9198bf3dc82b980d9193770d85b482b401"
     },
     "paper/unified/main.tex": {
-      "bytes": 8769,
-      "sha256": "2620b381aaf77910d7f4fc7dbc1e6103fd392fb6e754bb38eaf72eb8d0d91b7b"
+      "bytes": 8828,
+      "sha256": "934bf73b2c6ba6715c2a7e307f6416fc163a4f051a5384449fd0cc6951c6c163"
     },
     "paper/unified/sections/01-foundations.tex": {
       "bytes": 20284,
@@ -246,8 +250,8 @@
       "sha256": "2a7521a9d47198d3a389ae319a4548b85f71a81f7ec1be4789d7bfd7a1b9d9da"
     },
     "paper/unified/sections/04-safety.tex": {
-      "bytes": 15851,
-      "sha256": "eacfab1b1a44288eb3cca9cdb6859d002e1bf18568bb5283ce3a1fa739ad51fe"
+      "bytes": 22894,
+      "sha256": "2880f7f7c12202d647bab7b18d658b7bce63e4206cdd478e011c552a4486d7da"
     },
     "paper/unified/sections/05-zoe-architecture.tex": {
       "bytes": 16747,
@@ -266,16 +270,20 @@
       "sha256": "8a06dc9d1954bc8037447c562be2bbd80eaabcc29ea8fe1029765deb581bd0a1"
     },
     "paper/unified/sections/09-appendices.tex": {
-      "bytes": 14967,
-      "sha256": "729bb67341026875f41d5323d620337e5940bb845784addce966dad1164e5cc7"
+      "bytes": 15907,
+      "sha256": "9944937ab8be31951bf31f6e0902edb5f05abdd9f8563d160022c2896cb8b7e7"
     },
     "paper/unified/sections/10-references.tex": {
-      "bytes": 7919,
-      "sha256": "c4d4a2bfdffb03bfd87f6ecc89e3cc74f83fe6ea22f27b08f719015f9db98d8f"
+      "bytes": 9008,
+      "sha256": "a6d6bf07eb795cc6abf116cc801f7f37035213c3de49b0e2be95395bf3d1eb78"
+    },
+    "paper/unified/sources/cascade-subsection.txt": {
+      "bytes": 5793,
+      "sha256": "6ec3131767517b7d6763255e087b84c6b88d4f7b38223cf4a64dd9770d3748c7"
     },
     "paper/zoe-autonomy-complete.pdf": {
-      "bytes": 4551350,
-      "sha256": "6829e723082549eace854607ddf37f4abefbb9e467e1417bac58e10371ae34aa"
+      "bytes": 4660387,
+      "sha256": "befe57c79cc98e7ff0a8bbb79480d218d07f85f556ba358ed4da480eaaca7c06"
     },
     "paper/zoe-autonomy.pdf": {
       "bytes": 459521,

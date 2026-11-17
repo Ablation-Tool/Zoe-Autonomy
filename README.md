@@ -158,7 +158,7 @@ The internal executor changes only Zoe's in-memory evidence environment. `preser
 - `evidence/autonomous/verification.json` — autonomous-step integrity and provenance verification.
 - `paper/zoe-autonomy.pdf` — current Zoe One system paper.
 - `paper/zoe-autonomy.tex` — current paper source.
-- **[`paper/zoe-autonomy-complete.pdf`](paper/zoe-autonomy-complete.pdf)** — 73-page unified monograph covering the original Autonomy, Accessible Volume, Ambiguity, Constraint, Zoe, and Zoe Autonomy research through the monograph's November 2026 source state. [Unified LaTeX source](paper/unified/main.tex).
+- **[`paper/zoe-autonomy-complete.pdf`](paper/zoe-autonomy-complete.pdf)** — 76-page unified monograph covering the original Autonomy, Accessible Volume, Ambiguity, Constraint, Zoe, Zoe Autonomy, and supplemental cascade/AFL research, including the binary cascade visualization. [Unified LaTeX source](paper/unified/main.tex).
 - `paper/autonomy-march-2026.pdf` — original March 2026 Autonomy formulation, preserved with LaTeX source.
 - `paper/ambiguity-autonomy-compliance-cascade.pdf` — historical AFL/compliance-cascade disclosure; contains live-system details.
 - `paper/constraint-is-freedom.pdf` — historical NuClide threshold-geometry and functional-constraint paper.
