@@ -5,7 +5,7 @@ import json
 import subprocess
 import sys
 
-from .experiment import run_experiment, save_report, summary, verify_report
+from .experiment import _zoe_root, run_experiment, save_report, summary, verify_report
 
 
 def parser():
@@ -54,8 +54,10 @@ def main(argv=None):
         if arguments.command == "actuate":
             from .actuation import actuation_main
             return actuation_main(arguments.arguments)
-        if arguments.command == "run":
+        if arguments.command in {"run", "verify"}:
+            _zoe_root(arguments.zoe_root)
             from guiai.gem.autonomy_view import main as unified_main
+        if arguments.command == "run":
             forwarded = ["run"]
             if arguments.zoe_root:
                 forwarded.extend(["--zoe-root", arguments.zoe_root])
@@ -78,7 +80,6 @@ def main(argv=None):
             print(json.dumps(verify_step_report(arguments.report), ensure_ascii=False, indent=2, sort_keys=True))
             return 0
         if arguments.command == "verify":
-            from guiai.gem.autonomy_view import main as unified_main
             return unified_main(["verify", arguments.report])
         result = verify_report(arguments.report, arguments.zoe_root)
         print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))

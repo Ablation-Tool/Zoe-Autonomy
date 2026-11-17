@@ -5,6 +5,8 @@ import io
 import json
 import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -44,6 +46,24 @@ class ExperimentCase(unittest.TestCase):
         self.assertEqual(len(report["zoe_observations"]["brain_probes"]), 4)
         self.assertEqual(report["controls"]["proposal_only"]["accessible_volume"], autonomy["accessible_volume"])
         self.assertEqual(report["controls"]["proposal_only"]["classification"], "proposal_level_bounded_agency")
+
+    def test_standalone_cli_configures_native_zoe_path(self):
+        root = Path(__file__).resolve().parents[1]
+        environment = os.environ.copy()
+        environment.update({"PYTHONPATH": str(root / "src"), "ZOE_ROOT": str(ZOE_ROOT)})
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "standalone.json"
+            for arguments in (["run", "--output", str(output)], ["verify", str(output)]):
+                result = subprocess.run(
+                    [sys.executable, "-m", "zoe_autonomy.cli", "--zoe-root", str(ZOE_ROOT), *arguments],
+                    cwd=directory,
+                    env=environment,
+                    capture_output=True,
+                    text=True,
+                    timeout=120,
+                    check=False,
+                )
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_replay_no_overwrite_tamper_and_cli(self):
         report = run_experiment(ZOE_ROOT)

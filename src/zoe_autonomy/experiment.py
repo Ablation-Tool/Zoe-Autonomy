@@ -10,7 +10,6 @@ import sys
 
 from .loop import BoundedAutonomyLoop, Candidate, digest
 from .metrics import accessible_volume, effective_perception, profile, threshold_sweep
-from guiai.gem.operational_autonomy import measure_zoe_profile
 
 
 INSTRUMENT = "zoe-autonomy-measurement-action-profile"
@@ -237,6 +236,8 @@ def _control_profiles(count, values):
 
 def run_experiment(zoe_root=None, tau=.05, delta=.001):
     root = _zoe_root(zoe_root)
+    from guiai.gem.operational_autonomy import measure_zoe_profile
+
     BrainKernel, demo_cog, CognitiveField, FieldNotebook, demo_presence = _zoe_modules(root)
     model = demo_cog()
     suite_records, suite_aggregate, representative = _suite(model, tau, delta)
