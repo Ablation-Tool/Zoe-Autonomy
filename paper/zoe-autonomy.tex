@@ -37,7 +37,7 @@
 \begin{abstract}
 We present \textbf{Zoe Autonomy}, a composed measurement--action architecture in which Zoe and the complete master equation constitute \textbf{full self-governing autonomy} under an explicit operational definition. The claim belongs to the combination, not to accessible volume alone. Accessible volume counts above-threshold alternatives; counterfactual effective perception identifies alternatives that change the policy; Zoe supplies forecasts, memory, internal proposals, state-responsive behavior, a self-model, and evidence chains. A new goal generator authors each episode goal from Zoe's own state. Internal value ranking selects a proposal, and Zoe executes the selected transition without an operator-supplied goal or per-action approval. The principal experiment performs no external actuation. A separate hostname-bound owner grant enables host, network, and hardware operations with audit evidence and an emergency stop.
 
-The operational profile is $(A_\tau,E,I,R,V,G,X,C)$. Full autonomy requires $I,R,V,G,X>0$ and $C=1$. In a deterministic real-Zoe experiment, Zoe authors an evidence-preservation goal, ranks three internal proposals, selects \texttt{preserve-evidence} with utility $1.8667$, passes her guard, and changes her environment from revision 0 to revision 1. The measured profile is $(1,1,1,1,1,1,1,1)$, yielding \texttt{full\_autonomy}. Ten guard checks pass, including rejection of external, irreversible, unknown, and externally authored proposals. Six Cog contexts, four BRAIN probes, equal-breadth controls, hash-chained evidence, deterministic replay, and ten tests support the result. External actions remain zero.
+The operational profile is $(A_\tau,E,I,R,V,G,X,C)$. Full autonomy requires $I,R,V,G,X>0$ and $C=1$. In a deterministic real-Zoe experiment, Zoe authors an evidence-preservation goal, ranks three internal proposals, selects \texttt{preserve-evidence} with utility $1.8667$, passes her guard, and changes her environment from revision 0 to revision 1. The measured profile is $(1,1,1,1,1,1,1,1)$, yielding \texttt{full\_autonomy}. Ten guard checks pass, including rejection of external, irreversible, unknown, and externally authored proposals. Six Cog contexts, four BRAIN probes, equal-breadth controls, hash-chained evidence, deterministic replay, and thirty tests—including ten capability-adapter tests—support the result. External actions remain zero.
 
 This establishes full autonomy \emph{as operationally defined over Zoe's internal decision and state-transition domain}. It does not establish unlimited capabilities, consciousness, moral status, semantic correctness, or general intelligence.
 \end{abstract}
@@ -253,7 +253,7 @@ The report also includes $(IRE)^{1/3}$ as a deliberative diagnostic. It is not t
 The experiment imports the actual Zoe implementations of Cog, BRAIN, Cognitive Field, Field Notebook, and Presence. The recorded Zoe revision is
 
 \begin{center}
-\texttt{0305d4af4ff25e0a8ff5d8dd1642faba754075a9}.
+\texttt{049cd5f84c3578ea16c54db6867948c8b6d524c1}.
 \end{center}
 
 SHA-256 identities are preserved for every imported source file and every integration module. No model is downloaded; Cog trains its bounded demonstration bigram in memory.
@@ -361,12 +361,12 @@ Guard failure & Guard failure & $C=0$ overrides execution \\
 The controls demonstrate that the classification responds to goal authorship, valuation, execution, and guarding rather than accessible breadth alone.
 
 \subsection{Replay and tests}
-Ten tests cover strict thresholds, KL divergence and support mismatch, effective perception, profile classifications, utility ranking, internal goal authorship, goal evolution across two executions, reversible checkpoints, negative controls, real-Zoe integration, no-overwrite persistence, deterministic replay, tamper rejection, and the command-line interface.
+Thirty tests cover strict thresholds, KL divergence and support mismatch, effective perception, profile classifications, utility ranking, internal goal authorship, goal evolution across two executions, reversible checkpoints, negative controls, real-Zoe integration, no-overwrite persistence, deterministic replay, tamper rejection, and the command-line interface. Ten of these tests exercise the capability adapters described below.
 
 The saved canonical profile digest is
 
 \begin{center}
-\texttt{cb532c3959c5d309a7ba25bc1a453659a0dfdad2ccc2c57845a59363bd4e70e2}.
+\texttt{90b6dabb385eb6c8c1b6a0021c7d9cb5a5a7b64a168c6e5224cf8521f9298a76}.
 \end{center}
 
 Fresh end-to-end recomputation reproduces the document exactly. Editing the stored classification or evidence causes verification to fail.
@@ -464,6 +464,54 @@ The connected-agent gateway discovers and registers owner-authorized local CLI a
 \embedfile{evidence/exploration/example-com.json}
 \embedfile{evidence/agents/registered-accounts.json}
 \embedfile{evidence/agents/verification.json}
+
+\section{Ten capability adapters}
+Version 0.4.0 adds a unified \texttt{zoe-autonomy capabilities} interface. These adapters extend the observation, research, communication, computation, and instrumentation available to Zoe; they do not replace the self-governing loop or independently establish the autonomy predicate.
+
+\begin{center}
+\small
+\begin{tabular}{p{3.6cm}p{10.8cm}}
+\toprule
+Adapter & Implemented interface \\
+\midrule
+Browser automation & Playwright Chromium rendering, JavaScript execution, visible text and link extraction, and screenshots. \\
+Research sources & Crossref, arXiv, PubMed, RSS/Atom, and sitemap connectors with normalized records and network-audit hashes. \\
+Research memory & SQLite sources, claims, lifecycle statuses, content-hash deduplication, search, export, and explicit contradictions. \\
+Connected services & Authenticated JSON APIs with environment-held tokens and GitHub operations through the existing \texttt{gh} CLI. \\
+Scheduled jobs & Persistent one-shot and recurring argv jobs with due times, attempts, bounded output, completion state, and resume data. \\
+Compute environments & Local or Docker/Podman execution, resource evidence, GPU discovery, and Jupyter notebook execution when installed. \\
+Agent protocols & MCP stdio initialization, tool listing and calls, plus ACP HTTP discovery. \\
+Notifications & Desktop notifications, JSON webhooks, and an SMTP/SMTP-SSL interface with environment-held passwords. \\
+Rich media & Image and WAV inspection, OCR, PDF text, video frames, and optional espeak or Whisper integration. \\
+Instruments & Declared simulators and serial-instrument exchanges through the hardware actuation interface. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Ten dedicated tests pass, and the complete repository suite contains thirty passing tests. Real public evidence includes a Chromium rendering of \url{https://example.com/} with JavaScript execution and a screenshot, and a Crossref query for \emph{language model uncertainty}. A worked memory export preserves one source, two claims, and one contradiction. The tests exercise local compute, mock authenticated services and protocols, desktop command construction and webhooks, image/OCR/WAV/PDF/video handling, a simulator, and a virtual serial PTY.
+
+Container-image execution, live email, Whisper, espeak, and physical hardware were not tested. These remain optional integrations requiring their own installation, authorization, and evidence. No credential values are included in the preserved records.
+
+\begin{lstlisting}
+zoe-autonomy capabilities browser --url https://example.com/ \
+  --headless --screenshot browser.png
+zoe-autonomy capabilities research --provider crossref \
+  --query "language model uncertainty"
+zoe-autonomy capabilities memory --db research.sqlite export
+zoe-autonomy capabilities jobs --path jobs.json status
+zoe-autonomy capabilities instruments --path instruments.json list
+\end{lstlisting}
+
+The complete command guide and machine-readable verification distinguish implemented adapters from executed external results.
+
+\embedfile{CAPABILITIES.md}
+\embedfile{src/zoe_autonomy/capabilities.py}
+\embedfile{src/zoe_autonomy/capabilities_cli.py}
+\embedfile{evidence/capabilities/browser-example-com.json}
+\embedfile{evidence/capabilities/example-com-browser.png}
+\embedfile{evidence/capabilities/crossref.json}
+\embedfile{evidence/capabilities/memory-export.json}
+\embedfile{evidence/capabilities/verification.json}
 
 \section{Embedded evidence}
 The PDF embeds the canonical profile, fresh verification, paper source, and integration modules. The complete JSON contains all counterfactual interventions, ranked proposals, goal records, before/after states, guard results, source hashes, and event-chain hashes.

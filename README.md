@@ -15,6 +15,7 @@ The repository contains:
 - internally authored episode goals with no operator-goal input;
 - an internally controlled in-memory executor plus owner-granted host, network, and hardware actuation;
 - read-only internet exploration and an owner-authorized connected-agent gateway;
+- ten capability adapters for browsing, research, memory, services, jobs, compute, protocols, notifications, media, and instruments;
 - an operational autonomy profile with equal-breadth controls;
 - deterministic JSON evidence and no-overwrite replay verification;
 - a formal paper with equations, architecture, results, and limitations.
@@ -74,6 +75,22 @@ zoe-autonomy agents run kimi --prompt "Explain this repository"
 
 Kimi and Claude are currently registered through their existing authenticated CLIs. The gateway also supports custom CLI templates and OpenAI-compatible accounts using environment-held credentials. See [GATEWAY.md](GATEWAY.md), the [real web exploration](evidence/exploration/example-com.json), and [connected-account evidence](evidence/agents/registered-accounts.json).
 
+## Ten-capability pack
+
+```bash
+zoe-autonomy capabilities browser --url https://example.com/ --screenshot browser.png
+zoe-autonomy capabilities research --provider crossref --query "language model uncertainty"
+zoe-autonomy capabilities memory --db research.sqlite export
+zoe-autonomy capabilities jobs --path jobs.json status
+zoe-autonomy capabilities compute --gpu
+zoe-autonomy capabilities mcp --argv '["/path/to/mcp-server"]'
+zoe-autonomy capabilities notify --channel desktop --message "Research complete"
+zoe-autonomy capabilities media ocr --input image.png
+zoe-autonomy capabilities instruments --path instruments.json list
+```
+
+The pack covers browser automation, research APIs, persistent memory, connected services, scheduled jobs, compute environments, MCP/ACP, notifications, rich media, and hardware instruments. See [CAPABILITIES.md](CAPABILITIES.md), [real browser evidence](evidence/capabilities/browser-example-com.json), [real Crossref evidence](evidence/capabilities/crossref.json), and the [ten-capability verification](evidence/capabilities/verification.json).
+
 ## Architecture
 
 \[
@@ -118,7 +135,7 @@ The internal executor changes only Zoe's in-memory evidence environment. `preser
 - `paper/zoe-autonomy.pdf` — formal paper.
 - `paper/zoe-autonomy.tex` — paper source.
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `cb532c3959c5d309a7ba25bc1a453659a0dfdad2ccc2c57845a59363bd4e70e2`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `90b6dabb385eb6c8c1b6a0021c7d9cb5a5a7b64a168c6e5224cf8521f9298a76`.
 
 Rebuild the paper and verify artifact identities with:
 

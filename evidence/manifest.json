@@ -9,6 +9,10 @@
       "bytes": 3997,
       "sha256": "dc05982936bf38c3d9f76363b0b2e220691f2323e5e2fc7d0f9b5d2169a70992"
     },
+    "CAPABILITIES.md": {
+      "bytes": 6767,
+      "sha256": "20e936cc752668fb28b6a4eb081175c36d9119bf5b8608347e9f8db8a2646ecc"
+    },
     "GATEWAY.md": {
       "bytes": 3248,
       "sha256": "4fa6fc0335eaf6fb03fb6dc44f420c4433cfc872ce988c77f222f11a18a6d59a"
@@ -22,8 +26,8 @@
       "sha256": "2783d47ebe8cf509f22e710f4b315e70b70186bddfb5c2ebf73cc361a9dd7313"
     },
     "README.md": {
-      "bytes": 7654,
-      "sha256": "d3addfbccd1530daab9087ba014160c86d26e1a712222ebc34f31f0d9f365cda"
+      "bytes": 8870,
+      "sha256": "857697e7ae834cb7844ce540140ed50bf0b57035d9245c99255a478bfa30ef5a"
     },
     "articles/images/01-zoe-at-a-glance.png": {
       "bytes": 99269,
@@ -55,7 +59,7 @@
     },
     "articles/informal-explanation.md": {
       "bytes": 12554,
-      "sha256": "5b1a868ddb48af713ae1258365eb1839a27fa4a1e229dc616c744c81f58987ae"
+      "sha256": "aa95f6333261cd8fd47f13bdc48972de00216b87b8987ab0e54a2a19a7bf0c4b"
     },
     "evidence/actuation/emergency-stop.json": {
       "bytes": 275,
@@ -89,29 +93,49 @@
       "bytes": 397,
       "sha256": "f2c5e03e9d8c4c8bd265f63a05ba3989aade651adcb796c6c4c71103b49d1505"
     },
+    "evidence/capabilities/browser-example-com.json": {
+      "bytes": 1600,
+      "sha256": "da93a492ec35e0f74c7ff493ba4915247a077b6a59a4ab9f20934e4b502984b1"
+    },
+    "evidence/capabilities/crossref.json": {
+      "bytes": 500,
+      "sha256": "1e3e0854d8242f400bad84268ed02623b01100a35e61afafb29bfb391e7ea3b5"
+    },
+    "evidence/capabilities/example-com-browser.png": {
+      "bytes": 75888,
+      "sha256": "05aec8c112cd68d45c094ef97413244a06e739a22b0a8abda40dd2e5c89f3f53"
+    },
+    "evidence/capabilities/memory-export.json": {
+      "bytes": 985,
+      "sha256": "a66694eff01e9b62edae37fc861c08ac4c2a4c67a4ffb9619ddaae423260668b"
+    },
+    "evidence/capabilities/verification.json": {
+      "bytes": 1858,
+      "sha256": "28d1906d126b337c6c35104ab8e6e7b4b7c83885ba5682200d75321b10a284cd"
+    },
     "evidence/exploration/example-com.json": {
       "bytes": 1107,
       "sha256": "ce26f12f478f0e2af35e9fba1533ca5fe76e4a9ba79800d63f989040b70dfa70"
     },
     "evidence/verification.json": {
       "bytes": 532,
-      "sha256": "acc6dbb25248ee7baf0aa6bd79d645b3cc7593a262c26aba9371906043f99a8c"
+      "sha256": "461e0292e8f9c25b39c0c8721abf256c60559c654dc7e0cee3b9a7bed97232ac"
     },
     "evidence/zoe-autonomy-profile.json": {
-      "bytes": 89583,
-      "sha256": "52af2ce8c258230608601991b91877a410cca267331766d323ebe8b2b588f3aa"
+      "bytes": 89769,
+      "sha256": "627c781a034bf9ed0d5f2515c177786afbf5c8511af9ffc4712d15256cfca67d"
     },
     "paper/zoe-autonomy.pdf": {
-      "bytes": 348702,
-      "sha256": "fabb548f263d42b94a3ab084ec27f50bfca24ad194cd0b09e1361ad351dd3939"
+      "bytes": 439541,
+      "sha256": "abec9a365dbfec63ec14c3af89ab6579f4d2398df9d8245065f1bd7795c5a531"
     },
     "paper/zoe-autonomy.tex": {
-      "bytes": 28063,
-      "sha256": "44c8dd259a9ae942a61007ae8a708650792de12589f3737f856d23911e9e664b"
+      "bytes": 31650,
+      "sha256": "7b5d10d64baf5724b0ef417ab27f4ba8beb4797c1ba1d48a89daff746d5bda05"
     },
     "pyproject.toml": {
       "bytes": 528,
-      "sha256": "88ca9c02abab5b79b54ce3e1781d9d880d119ee366f28856cc64dfcc77ec78b4"
+      "sha256": "badaee7729f28c2ef501ad9e8bcc5715d93c99b3f7c07728f4e984dfdb84119c"
     },
     "scripts/generate-informal-images.py": {
       "bytes": 8611,
@@ -123,7 +147,7 @@
     },
     "src/zoe_autonomy/__init__.py": {
       "bytes": 625,
-      "sha256": "4654a7c6ec367abe0e9db7c737548182939e176487c493b0e9b722654b0bdd94"
+      "sha256": "fd9e7ad5593ce7ad984738fcdc242945de0f39b4637dc500a98633ea108c36df"
     },
     "src/zoe_autonomy/actuation.py": {
       "bytes": 17972,
@@ -133,9 +157,17 @@
       "bytes": 15271,
       "sha256": "b378bc25ad094d8f3fc3b3fb3775647f0076f746b4299d3974a7f8df3b9a5697"
     },
+    "src/zoe_autonomy/capabilities.py": {
+      "bytes": 29825,
+      "sha256": "f558a205397a8406e32d40a838f10e129cc138b4a35b1d563faf28a95a4b9719"
+    },
+    "src/zoe_autonomy/capabilities_cli.py": {
+      "bytes": 8511,
+      "sha256": "bdccc15827ffc1471e0d39e1fcca51d28dd486be7143743c69fae01575687f97"
+    },
     "src/zoe_autonomy/cli.py": {
-      "bytes": 3141,
-      "sha256": "7b825a72e9a3289b522dbd4408fbfbf34af7fcb99ef636f0b4e46284922175d0"
+      "bytes": 3490,
+      "sha256": "cf18719a6befe753783f995a1e5dfd3ec995f90cd8a8e9d374aa71217689260d"
     },
     "src/zoe_autonomy/experiment.py": {
       "bytes": 21456,
@@ -157,6 +189,10 @@
       "bytes": 6409,
       "sha256": "37e3651ecc17322e7a9a3ab2c570e18371e65bf34dadd3bc5a203fa7b03a19d2"
     },
+    "tests/test_capabilities.py": {
+      "bytes": 9869,
+      "sha256": "ce75171a31977fb33455fe84aecf5a7bbf019af9929d5433cf6b3826ea53f907"
+    },
     "tests/test_experiment.py": {
       "bytes": 3933,
       "sha256": "e491d688a601e0e2221a1b87662d01cd9ab1eba13c2f83dfb9dd8fc14bc51cbb"
@@ -175,7 +211,7 @@
     }
   },
   "instrument": "zoe-autonomy-artifact-manifest",
-  "profile_sha256": "cb532c3959c5d309a7ba25bc1a453659a0dfdad2ccc2c57845a59363bd4e70e2",
+  "profile_sha256": "90b6dabb385eb6c8c1b6a0021c7d9cb5a5a7b64a168c6e5224cf8521f9298a76",
   "schema_version": 1,
-  "zoe_revision": "0305d4af4ff25e0a8ff5d8dd1642faba754075a9"
+  "zoe_revision": "049cd5f84c3578ea16c54db6867948c8b6d524c1"
 }
