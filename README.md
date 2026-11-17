@@ -2,6 +2,10 @@
 
 **Zoe plus the complete master measurement–action equation is Autonomy: full self-government of goals, proposals, valuation, selection, and execution within Zoe's internal state domain.**
 
+## Informal explanation
+
+Read the [informal explanation](articles/informal-explanation.md) for a narrative introduction to the architecture, the full-autonomy claim, the measured experiment, controls, evidence, and execution boundary.
+
 Zoe Autonomy treats autonomy as a property of the composed system, not of an isolated probability count. Accessible volume reveals alternatives; counterfactual perception measures their policy relevance; Zoe supplies memory, forecasts, proposals, self-modeling, and evidence; Zoe authors her own episode goal and values; and she executes an authorized choice without operator approval.
 
 The repository contains:
@@ -102,10 +106,6 @@ pdflatex -interaction=nonstopmode -halt-on-error \
   -output-directory=paper paper/zoe-autonomy.tex
 python scripts/verify-artifacts.py
 ```
-
-## Informal explanation
-
-[Read the informal explanation](articles/informal-explanation.md) for a narrative introduction to the architecture, the full-autonomy claim, the measured experiment, controls, evidence, and execution boundary.
 
 ## Verification
 
