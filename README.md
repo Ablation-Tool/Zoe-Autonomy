@@ -82,17 +82,33 @@ The executor changes only Zoe's in-memory evidence environment. `preserve`, `ins
 
 - `evidence/zoe-autonomy-profile.json` — complete real-Zoe measurement–action profile.
 - `evidence/verification.json` — fresh end-to-end recomputation.
-- `paper/zoe-autonomy.pdf` — formal paper.
+- `paper/zoe-autonomy-complete.pdf` — finalized 84-page unified monograph covering seven primary source papers, four supplemental cascade/AFL documents, and the extended Zoe equation work.
+- `paper/unified/main.tex` — unified monograph source, with modular sections and self-contained figures.
+- `paper/zoe-autonomy.pdf` — focused 12-page standalone paper with the cascade visualization, explaining why Zoe plus the complete Autonomy equation is autonomous under the measured internal-domain predicate.
 - `paper/zoe-autonomy.tex` — paper source.
+- `paper/autonomy-march-2026.pdf` — original March 2026 Autonomy formulation, preserved as a historical source.
+- `paper/ambiguity-autonomy-compliance-cascade.pdf` — Ambiguity Front-Loading, the proposed compliance cascade, and the retrospective production-model case study; the historical PDF contains live-system details.
+- `paper/constraint-is-freedom.pdf` — NuClide's threshold-geometry, functional-constraint, cascade, trajectory-monitoring, and sonification paper.
+
+These historical papers document the research path from output-space volume and constraint to context-anchoring risks. They do not independently establish the later full-autonomy result: that claim belongs to the complete operational loop and its declared internal state domain.
 
 The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `a816ab3be73739eb06473092769995a95453140ea6e18d3377b2647de88144ca`.
 
-Rebuild the paper and verify artifact identities with:
+Rebuild the original Zoe Autonomy paper and verify artifact identities with:
 
 ```bash
 pdflatex -interaction=nonstopmode -halt-on-error \
   -output-directory=paper paper/zoe-autonomy.tex
 python scripts/verify-artifacts.py
+```
+
+Build the unified monograph from its self-contained source directory:
+
+```bash
+cd paper/unified
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
 ## Informal explanation
@@ -110,8 +126,11 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="src:${ZOE_ROOT}/guiai-lab" \
 
 - [Accessible Volume research](https://github.com/Ablation-Tool/next-token-predictability)
 - [Zoe](https://github.com/Ablation-Tool/zoe)
+- [Original March 2026 Autonomy paper](paper/autonomy-march-2026.pdf)
+- [Ambiguity, Autonomy, and the Autoregressive Compliance Cascade](paper/ambiguity-autonomy-compliance-cascade.pdf)
+- [Constraint Is Freedom](paper/constraint-is-freedom.pdf)
 
-The original accessible-volume equation and research were created by **Nicholas Michael Kloster on March 6, 2026**. Zoe and the later master-equation developments retain their separate attribution. This integration does not reassign that credit.
+The original accessible-volume equation and research were created by **Nicholas Michael Kloster on March 6, 2026**. The original March Autonomy and Ambiguity papers are credited to Nicholas; *Constraint Is Freedom* is credited to **NuClide—Nick + Claude**. Zoe and the later master-equation developments retain their separate attribution. This integration does not reassign those credits. Early universal-sensitivity, volume-as-autonomy, and cascade interpretations are historical claims, not substitutes for the later counterexamples, controls, and operational predicate.
 
 ## License
 
