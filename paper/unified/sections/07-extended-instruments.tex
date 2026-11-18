@@ -29,7 +29,19 @@ N(X)=\frac{X}{M}\left(1-\frac{\bar m}{M}\right)^2.
 \end{equation}
 The three normalized conspicuity maps are averaged into a saliency map. Winner selection and inhibition of return produce an attention scanpath. Exact four-neighbor Dijkstra connects selected foci over the unchanged pre-inhibition map with edge cost $L/\max(S,0.001)$, where $L$ is Euclidean pixel distance. The original cyclic graph is retained rather than replaced by the predecessor tree.
 
-Every default report uses a documented synthetic RGB pop-out. The canonical command also accepts real image files with \texttt{--image} and one to eight foci with \texttt{--foci}. Source and image hashes, original and processed dimensions, feature-map metadata, and scanpath coordinates are preserved. Replay recomputes the complete deterministic field. The real Vivotek example produces four foci; its image is not redistributed. No live camera is accessed. All 36 repository tests and all six host replays verify the implementation.
+Every default report uses a documented synthetic RGB pop-out. The canonical command also accepts real image files with \texttt{--image} and one to eight foci with \texttt{--foci}. Source and image hashes, original and processed dimensions, feature-map metadata, and scanpath coordinates are preserved. Replay recomputes the complete deterministic field. The real Vivotek example produces four foci; its image is not redistributed. No live camera is accessed. All 44 repository tests and all six host replays verify the implementation.
+
+\section{Measured self-reflection}
+The opt-in reflection experiment evaluates model choices from actual stereo prediction errors. For model $m$, residuals $r_{m,t,i}$ on predicted views supply an explicitly declared Gaussian log-likelihood,
+\begin{equation}
+\ell_{m,t}=-N_t\ln(\sigma\sqrt{2\pi})-\sum_i\frac{r_{m,t,i}^2}{2\sigma^2},
+\qquad \sigma=q/\sqrt{12},
+\end{equation}
+where $q$ is the disparity quantization in pixels. Log weights accumulate this evidence and are normalized across candidates. Candidate values derive from these weights rather than semantic gate labels. The authored goal constrains the candidate set before utility ranking, and adoption requires a lower RMSE on a separate 60-degree validation view. A failed validation retains the previous model; the checkpoint is reversible.
+
+The measured sequence preserves arithmetic, inspects and adopts precision, then reviews and retains precision. Training RMSE falls from 0.039720402 to 0.039394269 pixels, and validation RMSE from 0.039234586 to 0.039081672 pixels. The gain is small and fixture-specific. Posterior values belong to the declared residual approximation, not emotional confidence or universal correctness. The integrated reflection event is identical to the standalone first event and remains in the existing guard chain. All 44 repository tests pass. The default path preserves the earlier experiment except source hashes.
+
+For calibration, the fixed-candidate three-variable projection measures $\Phi=0$ under PyPhi 1.2.0~\cite{mayner2018pyphi}. Canonical AND motifs measure 0.25, 0.15625, and 0.117188 at three, four, and five nodes. These are controls, not Zoe's $\Phi$ or evidence of self-reflection. The reviewed external patch reproduces its on-report but has no real belief update and no implemented \texttt{--substrate} CLI flag. Its five-element searches are sampled, not exhaustive, so they do not prove an upper bound on all architectures.
 
 \section{Second eye: disparity, depth, and focus}
 The synthetic stereo instrument creates two parallel pinhole views with known baseline $B$, focal length $f$, sensor width $s$, and image width $W$. With $f_{px}=fW/s$, horizontal disparity $d$ and depth $Z$ satisfy

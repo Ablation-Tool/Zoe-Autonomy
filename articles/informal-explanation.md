@@ -136,6 +136,21 @@ Nine Gaussian scales produce 42 intensity, color-opponency, and orientation maps
 
 The report records the canonical GEM revision, saliency-source hash, image hash, and every selected focus. Replay recomputes the complete visual field. See the [real-image report](../evidence/visual-perception.json) and [its verification](../evidence/visual-verification.json). The public Vivotek image was read locally and is not redistributed; no live camera is accessed.
 
+## Learning which model to trust
+
+Zoe can now evaluate her own model choices from actual prediction errors rather than assigning meaning to a bit labeled “error.” Use `zoe-autonomy reflect` for a standalone cycle or `zoe-autonomy run --reflect` to place that event inside the main experiment and its guard chain.
+
+The experiment compares arithmetic and precision stereo fusion on three predicted views and a separate 60-degree validation view. The first cycle preserves arithmetic while updating model evidence. The second inspects precision and adopts it after validation improves. The third reviews and retains it.
+
+| Measurement | Arithmetic | Precision |
+|---|---:|---:|
+| Training RMSE, pixels | 0.039720402 | 0.039394269 |
+| Validation RMSE, pixels | 0.039234586 | 0.039081672 |
+
+Model weights come from an explicitly declared residual likelihood. The authored goal restricts which action can be selected, so the goal has a real path to action. A failed validation preserves the previous model. Every step can be recomputed with `zoe-autonomy verify-reflection`, and `belief_updated` changes only when the model state or its weights actually change.
+
+See the [replayed steps](../evidence/self-reflection/), [integrated event](../evidence/self-reflection/integrated.json), and [external-substrate review](../evidence/external-wiring-review.json). The 0.25 three-node AND control is not Zoe’s Φ, and a nonzero Φ is not the measurement used to claim learning here.
+
 ## Measuring whether alternatives actually matter
 
 An alternative can exist in a forecast without changing what a policy does.
@@ -287,7 +302,7 @@ The published result includes:
 - four controlled BRAIN probes;
 - 10/10 passing guard checks;
 - 42 saliency maps and a verified real-image scanpath;
-- 36 passing tests;
+- 44 passing tests, including real prediction, held-out validation, and replay;
 - deterministic end-to-end replay;
 - no-overwrite evidence handling;
 - tamper rejection;
@@ -297,7 +312,7 @@ The published result includes:
 The canonical profile digest is:
 
 ```text
-3ddfb1d01beee72edae8ac80bcb6f323aa21e2617fdf5c55f5f366d22f87c0de
+6e72ea278f3ffebe547dcea47d09e140f3417485147c916d17fb25b6a139b4b2
 ```
 
 The guard checks cover internally authored goals, absence of operator approval, successful internal execution, rejection of external and irreversible actions, rejection of unknown actions and externally authored proposals, event-chain verification, and zero external actions.

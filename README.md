@@ -65,6 +65,31 @@ The visual field uses the 1998 Itti–Koch–Niebur equations: nine Gaussian sca
 
 The `perception` extra supplies NumPy and Pillow. A Zoe checkout supplies the canonical GEM source through `components/graphics-environment-manager`, with a sibling checkout supported by the unified registry. `verify` recomputes the complete visual field and checks the image and source hashes. Reports contain no timing-dependent GPU claims. The image is read from the supplied file; no live camera is accessed and the base experiment still performs zero external actions.
 
+## Measured self-reflection
+
+`reflect` and the opt-in `run --reflect` path evaluate model choices from actual stereo prediction errors. The default principal experiment remains unchanged, including `belief_updated=false`.
+
+```bash
+zoe-autonomy run --reflect --output integrated-reflection.json
+zoe-autonomy verify integrated-reflection.json
+
+zoe-autonomy reflect --output reflection-step-1.json
+zoe-autonomy reflect --previous reflection-step-1.json --output reflection-step-2.json
+zoe-autonomy verify-reflection reflection-step-2.json
+```
+
+The supplied implementation in `src/zoe_autonomy/self_reflection.py` compares arithmetic and precision fusion through the canonical stereo imagery engine. It computes residuals on three predicted views and a separate 60-degree validation view, updates model weights with an explicitly declared Gaussian residual likelihood, and makes the authored goal constrain the candidate set. An alternative is adopted only when its validation RMSE is lower; otherwise the prior model is preserved. Model choices and checkpoints remain reversible and no source is rewritten.
+
+Measured sequence:
+
+1. **Preserve arithmetic** while updating model evidence.
+2. **Inspect and adopt precision** after training RMSE improves from 0.039720402 to 0.039394269 pixels and validation RMSE from 0.039234586 to 0.039081672 pixels.
+3. **Review and retain precision.** These are small measured gains under the declared stereo fixture, not universal superiority.
+
+The posterior is a model-comparison weight under the stated independent-residual approximation, not emotional confidence or a calibrated real-world guarantee. A negative validation test preserves the prior model. The integrated event is identical to the standalone first reflection event, remains in the same guard chain, and retains zero external actions.
+
+Evidence: [three replayed steps](evidence/self-reflection/), [integrated reflection](evidence/self-reflection/integrated.json), [off-path equivalence](evidence/self-reflection/default-off-comparison.json), [IIT controls](evidence/phi-verification.json), and [the external substrate review](evidence/external-wiring-review.json). The 0.25 three-node AND result is a control, not Zoe's Φ. Sampled searches do not prove an upper bound on every design. `scripts/measure-phi.py` reproduces the baseline and AND controls in the documented Python 3.9 environment.
+
 ## Quick start
 
 The numerical core requires only Python. The real-Zoe experiment requires a Zoe checkout:
@@ -175,7 +200,7 @@ The internal executor changes only Zoe's in-memory evidence environment. `preser
 - `evidence/autonomous/verification.json` — autonomous-step integrity and provenance verification.
 - `paper/zoe-autonomy.pdf` — current Zoe One system paper.
 - `paper/zoe-autonomy.tex` — current paper source.
-- **[`paper/zoe-autonomy-complete.pdf`](paper/zoe-autonomy-complete.pdf)** — 84-page unified monograph covering Autonomy, Accessible Volume, Ambiguity, Constraint, Zoe, Zoe Autonomy, supplemental cascade/AFL research, Dorothy/Neurogarden, and the expanded CERN research program. [Unified LaTeX source](paper/unified/main.tex).
+- **[`paper/zoe-autonomy-complete.pdf`](paper/zoe-autonomy-complete.pdf)** — 85-page unified monograph covering Autonomy, Accessible Volume, Ambiguity, Constraint, Zoe, Zoe Autonomy, supplemental cascade/AFL research, Dorothy/Neurogarden, and the expanded CERN research program. [Unified LaTeX source](paper/unified/main.tex).
 - `paper/autonomy-march-2026.pdf` — original March 2026 Autonomy formulation, preserved with LaTeX source.
 - `paper/ambiguity-autonomy-compliance-cascade.pdf` — historical AFL/compliance-cascade disclosure; contains live-system details.
 - `paper/constraint-is-freedom.pdf` — historical NuClide threshold-geometry and functional-constraint paper.
@@ -190,7 +215,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `3ddfb1d01beee72edae8ac80bcb6f323aa21e2617fdf5c55f5f366d22f87c0de`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `6e72ea278f3ffebe547dcea47d09e140f3417485147c916d17fb25b6a139b4b2`.
 
 Rebuild the paper and verify artifact identities with:
 
