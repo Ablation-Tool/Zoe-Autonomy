@@ -65,6 +65,20 @@ The visual field uses the 1998 Itti–Koch–Niebur equations: nine Gaussian sca
 
 The `perception` extra supplies NumPy and Pillow. A Zoe checkout supplies the canonical GEM source through `components/graphics-environment-manager`, with a sibling checkout supported by the unified registry. `verify` recomputes the complete visual field and checks the image and source hashes. Reports contain no timing-dependent GPU claims. The image is read from the supplied file; no live camera is accessed and the base experiment still performs zero external actions.
 
+## Four-capability autonomy evaluation
+
+Test **Perceive → Think → Learn → Act** and the feedback links between them:
+
+```bash
+zoe-autonomy evaluate --output evaluation.json
+zoe-autonomy evaluate --camera /dev/video0 --output camera-evaluation.json
+zoe-autonomy verify-evaluation camera-evaluation.json
+```
+
+The evaluator returns a behavioral failure rather than hiding an integration gap. Current synthetic and real-camera evidence passes the four narrow capability checks but fails `vision_changes_decision`: two different RGB scenes produce different saliency fields and byte-identical autonomy events. Integrated visual autonomy therefore remains **unpassed** until visual measurements causally affect a goal, proposal, value, or transition.
+
+The camera path captures one FFmpeg frame without audio and deletes the temporary photograph after computing its visual field. Reports retain only its hash, dimensions, provenance, and computed measurements. Camera input is operator-requested, not autonomously activated. See [the complete evaluation guide, coverage matrix, and limits](EVALUATION.md).
+
 ## Measured self-reflection
 
 `reflect` and the opt-in `run --reflect` path evaluate model choices from actual stereo prediction errors. The default principal experiment remains unchanged, including `belief_updated=false`.
