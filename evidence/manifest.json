@@ -39,7 +39,7 @@
     },
     "README.md": {
       "bytes": 19380,
-      "sha256": "3959ee36ce52d2003c1d978f1718718359295abc7e8f4d0b836f5d11d49e41c7"
+      "sha256": "7b43c2b81b818b978522bdc4a62213338c71b07b1920365b897e261dfadf92e1"
     },
     "articles/images/01-zoe-at-a-glance.png": {
       "bytes": 99269,
@@ -382,8 +382,8 @@
       "sha256": "2d49f58f3edb9ccdd5e55ea95bbf170b0e3df4caa76c53f9be60b50247f13391"
     },
     "paper/unified/sections/07-extended-instruments.tex": {
-      "bytes": 26013,
-      "sha256": "3e1676028f00a469c4c6fef25becaf73771dff7bd076234173077f4dcfb5d180"
+      "bytes": 30303,
+      "sha256": "5dc58b3d09ace6ff22c97e59f473ac108014229101ba75f02f74b4c65398eff0"
     },
     "paper/unified/sections/08-discussion.tex": {
       "bytes": 11485,
@@ -402,8 +402,8 @@
       "sha256": "6ec3131767517b7d6763255e087b84c6b88d4f7b38223cf4a64dd9770d3748c7"
     },
     "paper/zoe-autonomy-complete.pdf": {
-      "bytes": 6992420,
-      "sha256": "9257f0b044281e475ec12a89e0d2f313e95d38487bd63076dbaa88c0c7333194"
+      "bytes": 6996745,
+      "sha256": "86814e2fdaa596914831cbe6a1845135572d1d0be46d3ff7ef537be9aa9738e3"
     },
     "paper/zoe-autonomy-operational-profile.pdf": {
       "bytes": 1103628,
