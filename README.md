@@ -88,6 +88,8 @@ Measured sequence:
 
 The posterior is a model-comparison weight under the stated independent-residual approximation, not emotional confidence or a calibrated real-world guarantee. A negative validation test preserves the prior model. The integrated event is identical to the standalone first reflection event, remains in the same guard chain, and retains zero external actions.
 
+The reflection state also includes a native soroban working memory: earth and heaven beads represent observation and adoption counts using exact bead transitions. The replayed sequence has 4, 8, and 12 observation beads and 0, 1, and 1 adoption beads. These counters are separate from likelihood weights and never substitute for them. See the [soroban and ecological model](https://github.com/Ablation-Tool/graphics-environment-manager/blob/main/COGNITION.md#soroban-working-memory-and-ecological-feedback).
+
 Evidence: [three replayed steps](evidence/self-reflection/), [integrated reflection](evidence/self-reflection/integrated.json), [off-path equivalence](evidence/self-reflection/default-off-comparison.json), [IIT controls](evidence/phi-verification.json), and [the external substrate review](evidence/external-wiring-review.json). The 0.25 three-node AND result is a control, not Zoe's Φ. Sampled searches do not prove an upper bound on every design. `scripts/measure-phi.py` reproduces the baseline and AND controls in the documented Python 3.9 environment.
 
 ## Quick start
@@ -215,7 +217,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `6e72ea278f3ffebe547dcea47d09e140f3417485147c916d17fb25b6a139b4b2`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `095d90d336cfbc76d9843c2ec3d527fa368b0995b9ab9bce77a4e986d2edde96`.
 
 Rebuild the paper and verify artifact identities with:
 

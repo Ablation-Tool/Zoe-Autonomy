@@ -366,7 +366,7 @@ Thirty-four tests cover strict thresholds, KL divergence and support mismatch, e
 The saved canonical profile digest is
 
 \begin{center}
-\texttt{6e72ea278f3ffebe547dcea47d09e140f3417485147c916d17fb25b6a139b4b2}.
+\texttt{095d90d336cfbc76d9843c2ec3d527fa368b0995b9ab9bce77a4e986d2edde96}.
 \end{center}
 
 Fresh end-to-end recomputation reproduces the document exactly. Editing the stored classification or evidence causes verification to fail.
@@ -468,6 +468,8 @@ w_{m,t}=\frac{\tilde w_{m,t}}{\sum_j\tilde w_{j,t}}.
 Candidate values come from these measured weights, not from semantic gate labels. The goal constrains the candidate set, $C_g=\{c\in C:\operatorname{action}(c)=g\}$, before utility ranking. Adoption requires a lower validation RMSE; otherwise the incumbent model is retained. Thus the goal has a causal path to action and the evidence changes model weights, rather than merely appending a flag.
 
 The measured sequence is: preserve arithmetic, inspect and adopt precision, then review and retain precision. Training RMSE falls from 0.039720402 to 0.039394269 pixels and validation RMSE from 0.039234586 to 0.039081672 pixels. These are small fixture-specific gains. Posterior values describe the declared residual model, not emotional confidence or calibrated real-world certainty. A negative validation control preserves the incumbent. No source is rewritten and model checkpoints remain reversible.
+
+The reflection state also includes a physical-rule soroban working memory. Each rod encodes a digit as $d_i=\operatorname{lower}_i+5\operatorname{upper}_i$, where lower counts active earth beads and upper is the active heaven bead. Observation and adoption counts use exact bead transitions and reversible checkpoints: 4, 8, and 12 observations and 0, 1, and 1 adoptions. These evidence counters are distinct from likelihood weights and are not a second confidence score. The ecological resource-feedback experiment changes later observations through action and updates gain from actual prediction error; it is not a calibrated biological model.
 
 \begin{lstlisting}
 zoe-autonomy reflect --output reflection-step-1.json

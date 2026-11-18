@@ -43,6 +43,15 @@ The measured sequence preserves arithmetic, inspects and adopts precision, then 
 
 For calibration, the fixed-candidate three-variable projection measures $\Phi=0$ under PyPhi 1.2.0~\cite{mayner2018pyphi}. Canonical AND motifs measure 0.25, 0.15625, and 0.117188 at three, four, and five nodes. These are controls, not Zoe's $\Phi$ or evidence of self-reflection. The reviewed external patch reproduces its on-report but has no real belief update and no implemented \texttt{--substrate} CLI flag. Its five-element searches are sampled, not exhaustive, so they do not prove an upper bound on all architectures.
 
+\section{Soroban and ecological working memory}
+The reflection state includes a physical-rule soroban: each rod encodes a digit as
+\begin{equation}
+d_i=\operatorname{lower}_i+5\operatorname{upper}_i,
+\end{equation}
+where lower counts active earth beads and upper is the active heaven bead. Addition and subtraction use direct bead transitions, carries, and borrows. Multiplication uses place-shifted addition, and division uses repeated subtraction with at most nine subtractions per quotient digit. Whole-integer decoding does not replace those transitions. Checkpoints restore the prior bead configuration and preserve both the original and inverse history.
+
+The replayed reflection sequence represents 4, 8, and 12 observations and 0, 1, and 1 adoptions with these exact bead states. The counters remain separate from likelihood weights. The ecological experiment encodes light, energy, moisture, nutrients, obstacles, position, gain, cost, and prediction error in the same representation. Action changes later position and observed energy, while gain increases, decreases, or remains unchanged according to measured prediction error. This is a bounded, declared resource-feedback model, not a calibrated plant, a fungal network, or a consciousness measurement.
+
 \section{Second eye: disparity, depth, and focus}
 The synthetic stereo instrument creates two parallel pinhole views with known baseline $B$, focal length $f$, sensor width $s$, and image width $W$. With $f_{px}=fW/s$, horizontal disparity $d$ and depth $Z$ satisfy
 \begin{equation}
