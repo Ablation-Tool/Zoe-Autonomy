@@ -59,6 +59,10 @@ Evidence:
 - `evidence/evaluation/synthetic.json`
 - `evidence/evaluation/camera.json`
 
+## Separate event-causal result
+
+The newer `event-evaluate` path does not overwrite this negative result. It replaces scene-independent decisions with an event-causal architecture in which reconstructed event scenes change goals, candidate predictions, utility, and reversible attention transitions. Its pre-registered synthetic contract and real-camera conversion check pass. Compare the [event-causal report](event-causal/evaluation.json) with this document's original static-path failure. The two instruments measure different implementations; neither result may be used to rewrite the other.
+
 ## Camera boundary
 
 The camera adapter uses FFmpeg's `v4l2` input to request one Motion-JPEG frame. It uses `-an`, so no audio is captured. The temporary photograph is consumed by the canonical saliency engine and deleted; reports retain its SHA-256, dimensions, source provenance, and computed visual field, but `path=null` and `image_retained=false`.

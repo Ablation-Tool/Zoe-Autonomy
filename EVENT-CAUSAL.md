@@ -111,3 +111,22 @@ The first implementation acts only on internal attention state. Physical motion,
 ## Evidence and interpretation
 
 The evaluator compares adaptive behavior against no-learning, static-saliency, fixed-action, and random-action controls. It reports training, validation, unseen transfer, OOD, memory retention, throughput, and real-camera conversion separately. Existing negative results remain preserved: a new event-causal pass does not retroactively make the earlier static perception path integrated or prove general intelligence.
+
+
+## Measured result
+
+The implementation in `src/zoe_autonomy/event_*.py` passes every pre-registered synthetic check and the real-camera conversion check. The complete report is [`evidence/event-causal/evaluation.json`](evidence/event-causal/evaluation.json), with integrity verification through `verify-event-evaluation`.
+
+| Measurement | Adaptive | Control |
+|---|---:|---:|
+| Validation prediction RMSE | **4.641453** | 5.058147 without learning |
+| Validation tracking MAE | **3.593750** | 3.968750 without learning |
+| Transfer tracking MAE | **3.265625** | 3.531250 static saliency |
+| Transfer tracking MAE | **3.265625** | 3.562500 fixed action |
+| Transfer tracking MAE | **3.265625** | 3.703125 random action |
+| OOD detection | **0.875** | 0.000 validation false positives |
+| Adaptive throughput | **71.24 cycles/s** | host-specific, not power |
+
+Mirrored scenes select different actions. Every non-abstain candidate includes a predicted next observation and variance before selection. Gated updates, memory replay, event and memory hash chains, and internal guards pass. The real `/dev/video0` sequence produced valid change events and a guarded decision with `audio_captured=false` and `images_retained=false`. Camera activation remains operator-requested.
+
+The repository's 62 tests pass, including the complete pre-registered contract and camera provenance. Earlier failed runs and their causes are not converted into success claims: the final result comes from spatially coherent reconstruction, temporal translation matching, compositional direction models, robust velocity estimation, independent uncertainty, and conservative plastic updates.

@@ -65,6 +65,20 @@ The visual field uses the 1998 Itti–Koch–Niebur equations: nine Gaussian sca
 
 The `perception` extra supplies NumPy and Pillow. A Zoe checkout supplies the canonical GEM source through `components/graphics-environment-manager`, with a sibling checkout supported by the unified registry. `verify` recomputes the complete visual field and checks the image and source hashes. Reports contain no timing-dependent GPU claims. The image is read from the supplied file; no live camera is accessed and the base experiment still performs zero external actions.
 
+## Event-Causal Active Perception
+
+Zoe's event-driven architecture connects sparse perception, causal memory, action-conditioned prediction, independent uncertainty, gated local learning, and reversible attention execution:
+
+```bash
+zoe-autonomy event-evaluate --output event-evaluation.json
+zoe-autonomy event-evaluate --camera /dev/video0 --output event-camera-evaluation.json
+zoe-autonomy verify-event-evaluation event-camera-evaluation.json
+```
+
+The [pre-registered benchmark](EVENT-CAUSAL.md) passes all 11 synthetic checks and the real-camera conversion check. Adaptive validation prediction RMSE is **4.641453**, versus **5.058147** without learning. On unseen speed-2 transfer sequences, adaptive tracking MAE is **3.265625**, compared with **3.531250** for static iLab-style saliency, **3.562500** for fixed action, and **3.703125** for random action. OOD detection is **0.875** with **zero** validation false positives, and measured adaptive throughput is **71.24 cycles/s**. The real camera produced valid change events and a guarded decision; no audio or photograph is retained.
+
+This is measured event-causal behavior, not AGI, biological equivalence, semantic object recognition, or a power claim. The older static `evaluate` counterfactual remains a separate failed integration result. See the [architecture and evidence](EVENT-CAUSAL.md) and [full report](evidence/event-causal/evaluation.json).
+
 ## Four-capability autonomy evaluation
 
 Test **Perceive → Think → Learn → Act** and the feedback links between them:
@@ -231,7 +245,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `72e22c53458ee32420fe6dc96bb0a31ef814aa72b4276a740edd6e40437112c1`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `5908e43d66207ec12e20e6717cdd2f12df2aa4666948d9713d0df09d3193515f`.
 
 Rebuild the paper and verify artifact identities with:
 
