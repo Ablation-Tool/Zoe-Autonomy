@@ -72,6 +72,38 @@ def _integration_identity():
     }
 
 
+def _visual_perception(root, image_path=None, attention_steps=4):
+    from guiai.gem.unified import ComponentRegistry
+
+    source = ComponentRegistry(root).source("gem")
+    source_path = source["path"] / "gem" / "saliency_cognition.py"
+    if not source["available"] or not source_path.is_file():
+        raise ValueError("visual perception requires the canonical GEM saliency source")
+    lock_path = root / "components.lock.json"
+    lock = json.loads(lock_path.read_text(encoding="utf-8"))
+    revision = lock.get("components", {}).get("graphics-environment-manager", {}).get("revision")
+    if not isinstance(revision, str) or len(revision) != 40:
+        raise ValueError("Zoe's canonical GEM revision lock is missing or invalid")
+    if str(source["path"]) not in sys.path:
+        sys.path.insert(0, str(source["path"]))
+    from gem.saliency_cognition import load_rgb, prototype_image, saliency_report
+
+    if image_path is None:
+        saliency = saliency_report(prototype_image(), steps=attention_steps)
+    else:
+        rgb, image_source = load_rgb(image_path)
+        saliency = saliency_report(rgb, source=image_source, steps=attention_steps)
+    return {
+        "engine": "canonical GEM shared saliency field",
+        "repository": "https://github.com/Ablation-Tool/graphics-environment-manager",
+        "locked_revision": revision,
+        "source_sha256": {
+            "gem/saliency_cognition.py": hashlib.sha256(source_path.read_bytes()).hexdigest(),
+        },
+        "saliency": saliency,
+    }
+
+
 def _cog_context(model, context, tau, delta):
     items = model.distribution(context)
     probabilities = [item["probability"] for item in items]
@@ -234,7 +266,7 @@ def _control_profiles(count, values):
     return controls
 
 
-def run_experiment(zoe_root=None, tau=.05, delta=.001):
+def run_experiment(zoe_root=None, tau=.05, delta=.001, image_path=None, attention_steps=4):
     root = _zoe_root(zoe_root)
     from guiai.gem.operational_autonomy import measure_zoe_profile
 
@@ -343,7 +375,7 @@ def run_experiment(zoe_root=None, tau=.05, delta=.001):
             "bounded_means_autonomy": "I,R,V,X > 0, G=0, and C=1; an intermediate engineering control rather than full self-government.",
             "execution": "An internally authorized in-memory state transition, never an external action.",
         },
-        "parameters": {"tau": tau, "delta": delta, "brain_target_band": [1, 4]},
+        "parameters": {"tau": tau, "delta": delta, "brain_target_band": [1, 4], "attention_steps": attention_steps},
         "zoe_source": _source_identity(root),
         "integration_source_sha256": _integration_identity(),
         "forecast": representative_record,
@@ -402,6 +434,9 @@ def run_experiment(zoe_root=None, tau=.05, delta=.001):
         ],
     }
     report["operational_profile"] = measure_zoe_profile()
+    report["visual_perception"] = _visual_perception(root, image_path, attention_steps)
+    if image_path is not None:
+        report["parameters"]["image_path"] = report["visual_perception"]["saliency"]["source"]["path"]
     report["profile_sha256"] = digest(report)
     return report
 
@@ -431,7 +466,13 @@ def verify_report(path, zoe_root=None):
     parameters = document.get("parameters", {})
     if digest({key: value for key, value in document.items() if key != "profile_sha256"}) != document.get("profile_sha256"):
         raise ValueError("saved Zoe Autonomy report digest mismatch")
-    expected = run_experiment(zoe_root, parameters.get("tau"), parameters.get("delta"))
+    expected = run_experiment(
+        zoe_root,
+        parameters.get("tau"),
+        parameters.get("delta"),
+        image_path=parameters.get("image_path"),
+        attention_steps=parameters.get("attention_steps", 4),
+    )
     saved_body = deepcopy(document)
     expected_body = deepcopy(expected)
     for body in (saved_body, expected_body):
@@ -457,6 +498,9 @@ def verify_report(path, zoe_root=None):
         "guard_checks_passed": sum(check["passed"] for check in document["master_cycle"]["guard_checks"]),
         "guard_checks_total": len(document["master_cycle"]["guard_checks"]),
         "control_invariants_passed": all(document["control_invariants"].values()),
+        "visual_feature_maps": document["visual_perception"]["saliency"]["feature_map_counts"]["total"],
+        "visual_foci": len(document["visual_perception"]["saliency"]["scanpath"]),
+        "visual_live_camera": document["visual_perception"]["saliency"]["source"]["live_camera"],
     }
 
 
@@ -470,6 +514,8 @@ def summary(report):
         f"R={values['state_responsiveness']:.3f} · V={values['value_based_selection_ratio']:.3f} · "
         f"G={values['internal_goal_authorship_ratio']:.3f} · X={values['internally_authorized_execution_ratio']:.3f} · "
         f"C={values['guard_compliance']:.3f}\n"
+        f"Visual perception={report['visual_perception']['saliency']['feature_map_counts']['total']} maps · "
+        f"{len(report['visual_perception']['saliency']['scanpath'])} foci\n"
         f"Sandbox executed={report['sandbox_executed']} · external actions={report['external_actions']} · "
         "Zoe authors goals and executes without operator approval"
     )

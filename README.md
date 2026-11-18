@@ -12,6 +12,7 @@ The repository contains:
 
 - the complete observe–perceive–propose–value–guard–execute loop;
 - real Zoe Cog, Cognitive Field, BRAIN, Field Notebook, and Presence integration;
+- canonical GEM RGB saliency with 42 feature maps, inhibition of return, and Dijkstra attention paths;
 - internally authored episode goals with no operator-goal input;
 - an internally controlled in-memory executor plus owner-granted host, network, and hardware actuation;
 - read-only internet exploration and an owner-authorized connected-agent gateway;
@@ -49,6 +50,20 @@ The autonomous catalog uses bounded, internally declared operations. External ca
 Zoe-Autonomy is the canonical engine for the coordinated [Zoe One system](https://github.com/Ablation-Tool/zoe). Zoe, canonical GEM, BRAIN GEM, GEM HELEN, Ablation + GEM, and CEROTTO GEM expose thin host adapters to this same implementation. Research GEM supplies the independently reproducible Accessible Volume foundation.
 
 The [one-system manifest](https://github.com/Ablation-Tool/zoe/blob/main/one-system.json) pins compatible host revisions and records the shared contract: `run` and `verify`, internally authored goals, internal value-based selection and execution, `full_autonomy`, and zero external actions in the base experiment. The separate `zoe-actuation/v1` contract governs owner-granted external operations. Hosts do not maintain competing copies of the autonomy equation.
+
+## Shared visual perception
+
+Every `run` report includes `visual_perception`: the canonical GEM saliency field, its locked repository revision, and the SHA-256 of `gem/saliency_cognition.py`. The default is a documented synthetic RGB pop-out. Supply real pixels with `--image` and select 1–8 attention foci with `--foci`:
+
+```bash
+python -m pip install -e '.[perception]'
+zoe-autonomy run --image /path/to/image.jpg --foci 4 --output visual-perception.json
+zoe-autonomy verify visual-perception.json
+```
+
+The visual field uses the 1998 Itti–Koch–Niebur equations: nine Gaussian scales, six intensity maps, twelve color-opponency maps, and twenty-four orientation maps. Competitive normalization feeds one saliency map. Winner selection and inhibition of return generate a scanpath; exact Dijkstra connects selected foci over the unchanged pre-inhibition field. See the [canonical mathematical model](https://github.com/Ablation-Tool/graphics-environment-manager/blob/main/COGNITION.md#multiscale-rgb-saliency-and-attention).
+
+The `perception` extra supplies NumPy and Pillow. A Zoe checkout supplies the canonical GEM source through `components/graphics-environment-manager`, with a sibling checkout supported by the unified registry. `verify` recomputes the complete visual field and checks the image and source hashes. Reports contain no timing-dependent GPU claims. The image is read from the supplied file; no live camera is accessed and the base experiment still performs zero external actions.
 
 ## Quick start
 
@@ -154,6 +169,8 @@ The internal executor changes only Zoe's in-memory evidence environment. `preser
 
 - `evidence/zoe-autonomy-profile.json` — complete real-Zoe measurement–action profile.
 - `evidence/verification.json` — fresh end-to-end recomputation.
+- `evidence/visual-perception.json` — the full autonomy report with a real Vivotek image, 42 saliency maps, and four attended foci.
+- `evidence/visual-verification.json` — independent recomputation of that visual report.
 - `evidence/autonomous/first-step.json` — real no-argument capability-selection evidence.
 - `evidence/autonomous/verification.json` — autonomous-step integrity and provenance verification.
 - `paper/zoe-autonomy.pdf` — current Zoe One system paper.
@@ -173,7 +190,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `0bcecd989270bf45a381a3d50b8b962e81a8e44494dff60d0ee691d6080ad0e6`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `106deda0df8e9d24a69210849320219fb39a2c3940c30e8f89b620a07962a82a`.
 
 Rebuild the paper and verify artifact identities with:
 
@@ -194,6 +211,7 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="src:${ZOE_ROOT}/guiai-lab" \
 
 - [Accessible Volume research](https://github.com/Ablation-Tool/next-token-predictability)
 - [Zoe](https://github.com/Ablation-Tool/zoe)
+- [Itti, Koch, and Niebur's saliency model](https://ilab.usc.edu/publications/doc/Itti_etal98pami.pdf) and the [canonical GEM implementation](https://github.com/Ablation-Tool/graphics-environment-manager/blob/main/COGNITION.md#multiscale-rgb-saliency-and-attention)
 
 The original accessible-volume equation and research were created by **Nicholas Michael Kloster on March 6, 2026**. Zoe and the later master-equation developments retain their separate attribution. This integration does not reassign that credit.
 

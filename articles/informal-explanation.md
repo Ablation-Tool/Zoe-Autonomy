@@ -123,6 +123,19 @@ The autonomy claim belongs to this combination—not to Accessible Volume alone.
 
 *Original conceptual pipeline. In this implementation, τ is a probability threshold and δ is a KL policy-effect threshold.*
 
+## Perceiving actual images
+
+Every canonical report also includes a shared visual field from the canonical GEM. Its default is a documented synthetic RGB pop-out; a real image can be supplied directly:
+
+```bash
+zoe-autonomy run --image /path/to/image.jpg --foci 4 --output visual-perception.json
+zoe-autonomy verify visual-perception.json
+```
+
+Nine Gaussian scales produce 42 intensity, color-opponency, and orientation maps. Competitive normalization combines them into one saliency map. Winner selection and inhibition of return move attention between locations, and exact Dijkstra connects those foci over the unchanged pre-inhibition field.
+
+The report records the canonical GEM revision, saliency-source hash, image hash, and every selected focus. Replay recomputes the complete visual field. See the [real-image report](../evidence/visual-perception.json) and [its verification](../evidence/visual-verification.json). The public Vivotek image was read locally and is not redistributed; no live camera is accessed.
+
 ## Measuring whether alternatives actually matter
 
 An alternative can exist in a forecast without changing what a policy does.
@@ -273,7 +286,8 @@ The published result includes:
 - six counterfactual Cog contexts;
 - four controlled BRAIN probes;
 - 10/10 passing guard checks;
-- 10 passing tests;
+- 42 saliency maps and a verified real-image scanpath;
+- 36 passing tests;
 - deterministic end-to-end replay;
 - no-overwrite evidence handling;
 - tamper rejection;
@@ -283,7 +297,7 @@ The published result includes:
 The canonical profile digest is:
 
 ```text
-0bcecd989270bf45a381a3d50b8b962e81a8e44494dff60d0ee691d6080ad0e6
+106deda0df8e9d24a69210849320219fb39a2c3940c30e8f89b620a07962a82a
 ```
 
 The guard checks cover internally authored goals, absence of operator approval, successful internal execution, rejection of external and irreversible actions, rejection of unknown actions and externally authored proposals, event-chain verification, and zero external actions.

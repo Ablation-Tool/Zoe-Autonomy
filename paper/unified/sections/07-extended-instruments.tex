@@ -22,6 +22,15 @@ P_k=(I-K_kH_k)P_k^-(I-K_kH_k)^T+K_kR_kK_k^T.
 \end{equation}
 Dimensions and covariance matrices are checked and singular innovation covariances rejected. Filtering does not validate the supplied dynamics, establish learning, or authorize an action. The EKF is not assumed to be a model of thought or token distributions.
 
+\section{Shared visual perception}
+The canonical autonomy report now includes the multiscale saliency field from the canonical GEM, with a locked source revision and source hash. Following Itti, Koch, and Niebur~\cite{itti1998}, nine Gaussian scales yield six intensity, twelve color-opponency, and twenty-four orientation maps. For a nonnegative feature map $X$ with global maximum $M>0$ and mean other strict eight-neighbor local maximum $\bar m$,
+\begin{equation}
+N(X)=\frac{X}{M}\left(1-\frac{\bar m}{M}\right)^2.
+\end{equation}
+The three normalized conspicuity maps are averaged into a saliency map. Winner selection and inhibition of return produce an attention scanpath. Exact four-neighbor Dijkstra connects selected foci over the unchanged pre-inhibition map with edge cost $L/\max(S,0.001)$, where $L$ is Euclidean pixel distance. The original cyclic graph is retained rather than replaced by the predecessor tree.
+
+Every default report uses a documented synthetic RGB pop-out. The canonical command also accepts real image files with \texttt{--image} and one to eight foci with \texttt{--foci}. Source and image hashes, original and processed dimensions, feature-map metadata, and scanpath coordinates are preserved. Replay recomputes the complete deterministic field. The real Vivotek example produces four foci; its image is not redistributed. No live camera is accessed. All 36 repository tests and all six host replays verify the implementation.
+
 \section{Second eye: disparity, depth, and focus}
 The synthetic stereo instrument creates two parallel pinhole views with known baseline $B$, focal length $f$, sensor width $s$, and image width $W$. With $f_{px}=fW/s$, horizontal disparity $d$ and depth $Z$ satisfy
 \begin{equation}

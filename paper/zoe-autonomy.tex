@@ -37,7 +37,7 @@
 \begin{abstract}
 We present \textbf{Zoe Autonomy}, a composed measurement--action architecture in which Zoe and the complete master equation constitute \textbf{full self-governing autonomy} under an explicit operational definition. The claim belongs to the combination, not to accessible volume alone. Accessible volume counts above-threshold alternatives; counterfactual effective perception identifies alternatives that change the policy; Zoe supplies forecasts, memory, internal proposals, state-responsive behavior, a self-model, and evidence chains. A new goal generator authors each episode goal from Zoe's own state. Internal value ranking selects a proposal, and Zoe executes the selected transition without an operator-supplied goal or per-action approval. The principal experiment performs no external actuation. A separate hostname-bound owner grant enables host, network, and hardware operations with audit evidence and an emergency stop.
 
-The operational profile is $(A_\tau,E,I,R,V,G,X,C)$. Full autonomy requires $I,R,V,G,X>0$ and $C=1$. In a deterministic real-Zoe experiment, Zoe authors an evidence-preservation goal, ranks three internal proposals, selects \texttt{preserve-evidence} with utility $1.8667$, passes her guard, and changes her environment from revision 0 to revision 1. The measured profile is $(1,1,1,1,1,1,1,1)$, yielding \texttt{full\_autonomy}. Ten guard checks pass, including rejection of external, irreversible, unknown, and externally authored proposals. Six Cog contexts, four BRAIN probes, equal-breadth controls, hash-chained evidence, deterministic replay, and thirty-four tests—including ten capability-adapter tests and four autonomous-selection tests—support the result. External actions remain zero.
+The operational profile is $(A_\tau,E,I,R,V,G,X,C)$. Full autonomy requires $I,R,V,G,X>0$ and $C=1$. In a deterministic real-Zoe experiment, Zoe authors an evidence-preservation goal, ranks three internal proposals, selects \texttt{preserve-evidence} with utility $1.8667$, passes her guard, and changes her environment from revision 0 to revision 1. The measured profile is $(1,1,1,1,1,1,1,1)$, yielding \texttt{full\_autonomy}. Ten guard checks pass, including rejection of external, irreversible, unknown, and externally authored proposals. Six Cog contexts, four BRAIN probes, equal-breadth controls, hash-chained evidence, deterministic replay, and thirty-six tests—including ten capability-adapter tests, four autonomous-selection tests, and real-image perception/replay—support the result. External actions remain zero.
 
 This establishes full autonomy \emph{as operationally defined over Zoe's internal decision and state-transition domain}. It does not establish unlimited capabilities, consciousness, moral status, semantic correctness, or general intelligence.
 \end{abstract}
@@ -366,7 +366,7 @@ Thirty-four tests cover strict thresholds, KL divergence and support mismatch, e
 The saved canonical profile digest is
 
 \begin{center}
-\texttt{0bcecd989270bf45a381a3d50b8b962e81a8e44494dff60d0ee691d6080ad0e6}.
+\texttt{106deda0df8e9d24a69210849320219fb39a2c3940c30e8f89b620a07962a82a}.
 \end{center}
 
 Fresh end-to-end recomputation reproduces the document exactly. Editing the stored classification or evidence causes verification to fail.
@@ -437,6 +437,24 @@ PYTHONDONTWRITEBYTECODE=1 \
 
 Report paths use exclusive creation. The base experiment performs no model download, network request, hardware operation, or external action. Explicit actuation operations are separate and run only under the owner grant.
 
+\section{Shared visual perception}
+Version 0.6.0 makes canonical GEM's multiscale saliency field part of every canonical report. The default observation is a documented synthetic RGB pop-out; \texttt{--image} supplies real pixels and \texttt{--foci} selects one to eight attention locations. Following Itti, Koch, and Niebur, nine Gaussian scales yield six intensity, twelve color-opponency, and twenty-four orientation maps~\cite{itti1998}. For a nonnegative feature map $X$ with maximum $M>0$ and mean other strict eight-neighbor maximum $\bar m$,
+\begin{equation}
+N(X)=\frac{X}{M}\left(1-\frac{\bar m}{M}\right)^2.
+\end{equation}
+The three normalized conspicuity maps are averaged. Winner selection and inhibition of return produce an attention scanpath, while exact Dijkstra connects selected foci over the unchanged pre-inhibition field. The report preserves all 42 map descriptions, conspicuity maps, coordinates, source and image hashes, and the locked canonical GEM revision. Replay recomputes the complete visual field without timing-dependent GPU claims.
+
+\begin{lstlisting}
+zoe-autonomy run --image /path/to/image.jpg --foci 4 \
+  --output visual-perception.json
+zoe-autonomy verify visual-perception.json
+\end{lstlisting}
+
+The real Vivotek example produces four attended foci. The image itself is not redistributed. All 36 repository tests pass, including a real-image CLI and replay regression. The complete host verifier also checks the same visual field and replay result through all six entry points. No live camera is accessed and the base experiment retains zero external actions.
+
+\embedfile{evidence/visual-perception.json}
+\embedfile{evidence/visual-verification.json}
+
 \section{Owner-granted actuation}
 A local-owner grant bound to this computer's hostname enables host, network, and hardware scopes under the current OS account. The actuation CLI is independent of the base experiment:
 
@@ -491,7 +509,7 @@ Instruments & Declared simulators and serial-instrument exchanges through the ha
 \end{tabular}
 \end{center}
 
-Ten dedicated adapter tests pass, and the complete repository suite contains thirty-four passing tests. Real public evidence includes a Chromium rendering of \url{https://example.com/} with JavaScript execution and a screenshot, and a Crossref query for \emph{language model uncertainty}. A worked memory export preserves one source, two claims, and one contradiction. The tests exercise local compute, mock authenticated services and protocols, desktop command construction and webhooks, image/OCR/WAV/PDF/video handling, a simulator, and a virtual serial PTY.
+Ten dedicated adapter tests pass, and the complete repository suite contains thirty-six passing tests. Real public evidence includes a Chromium rendering of \url{https://example.com/} with JavaScript execution and a screenshot, and a Crossref query for \emph{language model uncertainty}. A worked memory export preserves one source, two claims, and one contradiction. The tests exercise local compute, mock authenticated services and protocols, desktop command construction and webhooks, image/OCR/WAV/PDF/video handling, a simulator, and a virtual serial PTY.
 
 Container-image execution, live email, Whisper, espeak, and physical hardware were not tested. These remain optional integrations requiring their own installation, authorization, and evidence. No credential values are included in the preserved records.
 
@@ -602,6 +620,12 @@ Nicholas Michael Kloster and Zoe.
 Solomon Kullback and Richard A. Leibler.
 \newblock On Information and Sufficiency.
 \newblock \emph{The Annals of Mathematical Statistics}, 22(1):79--86, 1951.
+
+\bibitem{itti1998}
+Laurent Itti, Christof Koch, and Ernst Niebur.
+\newblock A Model of Saliency-Based Visual Attention for Rapid Scene Analysis.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 20(11):1254--1259, 1998.
+\newblock \url{https://ilab.usc.edu/publications/doc/Itti_etal98pami.pdf}.
 \end{thebibliography}
 
 \end{document}
