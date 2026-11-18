@@ -314,7 +314,7 @@ The published result includes:
 The canonical profile digest is:
 
 ```text
-095d90d336cfbc76d9843c2ec3d527fa368b0995b9ab9bce77a4e986d2edde96
+72e22c53458ee32420fe6dc96bb0a31ef814aa72b4276a740edd6e40437112c1
 ```
 
 The guard checks cover internally authored goals, absence of operator approval, successful internal execution, rejection of external and irreversible actions, rejection of unknown actions and externally authored proposals, event-chain verification, and zero external actions.

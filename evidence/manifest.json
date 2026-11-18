@@ -13,6 +13,10 @@
       "bytes": 8378,
       "sha256": "b3c860d37834657073c250222b2dde76f232428149eebc74b2cf15543ceab065"
     },
+    "EVALUATION.md": {
+      "bytes": 7619,
+      "sha256": "ee8d67cd4f82cc16f7ea397b0d920c567a74909ced158415d6675916e6ad1e89"
+    },
     "GATEWAY.md": {
       "bytes": 3248,
       "sha256": "4fa6fc0335eaf6fb03fb6dc44f420c4433cfc872ce988c77f222f11a18a6d59a"
@@ -26,8 +30,8 @@
       "sha256": "0158352b69211e3b202c144d2d13deef2e07234dd170cf967ecd6dcc4e2bf226"
     },
     "README.md": {
-      "bytes": 16861,
-      "sha256": "2a714f685227ac7f567360efa02624eb515e2d2fa5a5d6f6ae20c6c26e1ee690"
+      "bytes": 17967,
+      "sha256": "f6f4da122910117242d862c6b314bbb88e638aebe36c061e307ce24a7072e6ae"
     },
     "articles/images/01-zoe-at-a-glance.png": {
       "bytes": 99269,
@@ -59,7 +63,7 @@
     },
     "articles/informal-explanation.md": {
       "bytes": 16021,
-      "sha256": "5e402fb994c35baa35190af946b6b4224c425c9d93eaccde3b706be8455f84b5"
+      "sha256": "32af1891d2cabf3b97ea756113048919aee6673c1626185fb5c61299c0385b5d"
     },
     "evidence/actuation/emergency-stop.json": {
       "bytes": 275,
@@ -121,6 +125,14 @@
       "bytes": 1858,
       "sha256": "8f9dafb9012618a6d11cdc898e9ca054238e98e887b93b9ed3bdd8168c7dcbad"
     },
+    "evidence/evaluation/camera.json": {
+      "bytes": 868042,
+      "sha256": "fe67a8aca072d7f70894ff54ca6d6842a4efd7e42651ef7df85d83caadd69a8e"
+    },
+    "evidence/evaluation/synthetic.json": {
+      "bytes": 840564,
+      "sha256": "ffa32b879673086859d052fb225a9aa1305e332ff7482e5584f67a125ad43017"
+    },
     "evidence/exploration/example-com.json": {
       "bytes": 1107,
       "sha256": "ce26f12f478f0e2af35e9fba1533ca5fe76e4a9ba79800d63f989040b70dfa70"
@@ -135,55 +147,55 @@
     },
     "evidence/self-reflection/default-off-comparison.json": {
       "bytes": 397,
-      "sha256": "0acf32a095303697267bb714f63478adc8ac98a09ca0fcc788868b2af0cb9f0e"
+      "sha256": "048f731b82afa83a3b5528811c599ee71d1dd7a30f7f727ae161f91826e27c87"
     },
     "evidence/self-reflection/integrated-verification.json": {
       "bytes": 622,
-      "sha256": "f2f0330754cc1522900fdf0a25fcbf655539d15ecb84dca568f91607d01da6c5"
+      "sha256": "894e189d6870181ed1514591a638500c45edc1f14ad2fccbe88dddba67350388"
     },
     "evidence/self-reflection/integrated.json": {
-      "bytes": 311640,
-      "sha256": "c781bc4af2eb631a2381468620a023e7e2ff001dcdccf7c9994ebffcd59629b7"
+      "bytes": 311820,
+      "sha256": "5b46a51e84574beda3408988e46de4933f0a2d9a36ead6ff502fe7805d86ef51"
     },
     "evidence/self-reflection/step-1.json": {
-      "bytes": 77307,
-      "sha256": "93cf08d8ab5ccfefa2d3d8353997c21daaee5b10b1f0ebd1d2df08f060b99900"
+      "bytes": 77396,
+      "sha256": "4fa8762654175a6af1570c5906c031e18ceb29d62b038e3f987613b2eeba0523"
     },
     "evidence/self-reflection/step-2.json": {
-      "bytes": 149000,
-      "sha256": "632675b0313577a917dd0b346c8aea456ff7fb198722f1c29eca9ce0ce17a135"
+      "bytes": 149089,
+      "sha256": "74c9b4657c50a40860e27b8df6420065c56c7d1e5f3772dc884b85229038a924"
     },
     "evidence/self-reflection/step-3.json": {
-      "bytes": 191212,
-      "sha256": "b5d32df0a5600c1ba476064dd4baab184a53b403480e7e81a12e99103e1b9680"
+      "bytes": 191301,
+      "sha256": "a22ecccbdc8dced71cb8c15eb14d2cf7d1da8163c84e46b4a028d1c910e79ea1"
     },
     "evidence/self-reflection/verification-step-1.json": {
       "bytes": 356,
-      "sha256": "d7a07e86ce95cb5ebd21de17d6ca0cbd08baf9025641e91d53b5638d4a40a618"
+      "sha256": "1008750de2f6d88c290f57c7d469340bff88f6ca32b11fb80b8f3c0dae97e436"
     },
     "evidence/self-reflection/verification-step-2.json": {
       "bytes": 366,
-      "sha256": "4626e0774f300cdc66648d6d69b0658f7985daf7f67c1510bf66caed54d5f8b1"
+      "sha256": "71fbc2f64a518b0bd40bbe7aa78085598e11a1b0539513a01946582df7c3eec8"
     },
     "evidence/self-reflection/verification-step-3.json": {
       "bytes": 350,
-      "sha256": "00d30d98727265298ca6f799c899bd7fca2a314c08b6742114182a3e9cc7cbc6"
+      "sha256": "7653b860aa3ab69b376190e6c84a8f8bcabe3be12a1af9ce69567c99fd515a64"
     },
     "evidence/verification.json": {
       "bytes": 612,
-      "sha256": "ea023ac40a27706066a733e441a975e9a46dfeeabf9aef40e47c7603c05b5cc5"
+      "sha256": "285e2d198a8685051561356947f76c74a2159412899556248890eaa058d007fd"
     },
     "evidence/visual-perception.json": {
-      "bytes": 212071,
-      "sha256": "9b67de41f5d8de1a48b986ffe7d5da76cc558c65886e7522b89072d0e70d8838"
+      "bytes": 212254,
+      "sha256": "b968bd7b66022f6a4d0f5198d901be70a4b9f0643665fa75af98f836f883bb9c"
     },
     "evidence/visual-verification.json": {
       "bytes": 612,
-      "sha256": "03394b2261bf78676b6a51ef511fb9efdfad0781582250803fdc45168217dfce"
+      "sha256": "96efd3dca3a244d95033bb4e45631d08446593fd0e8ae89a3bfe93741227c9cd"
     },
     "evidence/zoe-autonomy-profile.json": {
-      "bytes": 184075,
-      "sha256": "c59c70e04e7bd478e27bf992ab8daabd8da8f147097c9302c9e0f299492aefd7"
+      "bytes": 184164,
+      "sha256": "cb151566a862995275dbcff54f6952abac4fd8bf64fdc5fb4f114eedacd12a28"
     },
     "paper/ambiguity-autonomy-compliance-cascade.pdf": {
       "bytes": 350885,
@@ -382,12 +394,12 @@
       "sha256": "6f4c740e7246e02345154524bfaadf50a6a76dd52af7536230ec3aa49d14876e"
     },
     "paper/zoe-autonomy.pdf": {
-      "bytes": 547296,
-      "sha256": "5e9ab67c01908e77c2aa52dc0ac72b0542c2e1e71ede139051c395f62bb4b2a9"
+      "bytes": 547873,
+      "sha256": "8d8a9d15c4fc862a4aec116b5fe35eba0bd208b219441da38c228bf073531206"
     },
     "paper/zoe-autonomy.tex": {
       "bytes": 41337,
-      "sha256": "468e8da61a85946989440d90b3f4864153250c47a7f427cff4fd7a2d28dfc638"
+      "sha256": "cc281380a84ff0c71055b78c245c2df2aa9e511254dc84c292c8f31e72e251d5"
     },
     "pyproject.toml": {
       "bytes": 612,
@@ -430,8 +442,12 @@
       "sha256": "bdccc15827ffc1471e0d39e1fcca51d28dd486be7143743c69fae01575687f97"
     },
     "src/zoe_autonomy/cli.py": {
-      "bytes": 7473,
-      "sha256": "7ae75452d30ca381ccaa809ce2fe25abc986e7fb2c86b6b818d538290ca3f1aa"
+      "bytes": 9401,
+      "sha256": "79a615bdbf352e8974281024ad9bee04125b206f30c0ca39a37848b16b097551"
+    },
+    "src/zoe_autonomy/evaluation.py": {
+      "bytes": 19691,
+      "sha256": "b59e81635d8161a2b7dbe3abecbe2e655b15350c4b319ec3f293bad8cfbbddb3"
     },
     "src/zoe_autonomy/experiment.py": {
       "bytes": 26100,
@@ -465,6 +481,10 @@
       "bytes": 10954,
       "sha256": "9004bd2dc09165fa6466c31ba94cc08916f07c5a04ba1485c622fbbc46c4921e"
     },
+    "tests/test_evaluation.py": {
+      "bytes": 4816,
+      "sha256": "e1719193edfb6a4ff296ed060f906b0cac52d0d40a9def2fe7a0ea75c8a06e4f"
+    },
     "tests/test_experiment.py": {
       "bytes": 9892,
       "sha256": "cd3cb2af806781ec22f8ea08c16040ccdc3b6c95e2eab04cfdaffd399bfead2a"
@@ -487,7 +507,7 @@
     }
   },
   "instrument": "zoe-autonomy-artifact-manifest",
-  "profile_sha256": "095d90d336cfbc76d9843c2ec3d527fa368b0995b9ab9bce77a4e986d2edde96",
+  "profile_sha256": "72e22c53458ee32420fe6dc96bb0a31ef814aa72b4276a740edd6e40437112c1",
   "schema_version": 1,
-  "zoe_revision": "6ef233e789c786bcd0fcc8a633c84e63402e40bf"
+  "zoe_revision": "e6245145e11fca58ba970130237e748b2144cd94"
 }
