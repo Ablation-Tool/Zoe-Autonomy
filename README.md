@@ -79,6 +79,20 @@ The [pre-registered benchmark](EVENT-CAUSAL.md) passes all 11 synthetic checks a
 
 This is measured event-causal behavior, not AGI, biological equivalence, semantic object recognition, or a power claim. The older static `evaluate` counterfactual remains a separate failed integration result. See the [architecture and evidence](EVENT-CAUSAL.md) and [full report](evidence/event-causal/evaluation.json).
 
+## Semantic artifact analysis with Ablation
+
+`semantic-evaluate` composes Ablation's behavioral retrieval and reverse-engineering tools with Zoe's Cognitive Field, event memory, guard, and evidence chain:
+
+```bash
+export ABLATION_ROOT=/path/to/canonical-ablation
+export PYTHONPATH="$PWD/src:$ZOE_ROOT/guiai-lab:$ABLATION_ROOT"
+zoe-autonomy semantic-evaluate --artifact /path/to/binary \
+  --state /path/to/semantic-state --output semantic-artifact.json
+zoe-autonomy verify-semantic-evaluation semantic-artifact.json
+```
+
+The real stripped-binary demonstration preserves weak retrieval scores and `limited_support=true`, while direct disassembly finds a tail jump to `strcpy`. Zoe selects `semantic-inspect` with valid memory and guard chains and zero external actions. This is executable-artifact semantics—not general world semantics, vulnerability proof without bounds review, or AGI. See [the architecture, measured demonstration, and limits](SEMANTIC-ARTIFACTS.md).
+
 ## Four-capability autonomy evaluation
 
 Test **Perceive → Think → Learn → Act** and the feedback links between them:
@@ -230,7 +244,7 @@ The internal executor changes only Zoe's in-memory evidence environment. `preser
 - `evidence/autonomous/verification.json` — autonomous-step integrity and provenance verification.
 - `paper/zoe-autonomy.pdf` — current Zoe One system paper.
 - `paper/zoe-autonomy.tex` — current paper source.
-- **[`paper/zoe-autonomy-complete.pdf`](paper/zoe-autonomy-complete.pdf)** — 86-page unified monograph covering Autonomy, Accessible Volume, Ambiguity, Constraint, Zoe, Zoe Autonomy, supplemental cascade/AFL research, Dorothy/Neurogarden, and the expanded CERN research program. [Unified LaTeX source](paper/unified/main.tex).
+- **[`paper/zoe-autonomy-complete.pdf`](paper/zoe-autonomy-complete.pdf)** — 87-page unified monograph covering Autonomy, Accessible Volume, Ambiguity, Constraint, Zoe, Zoe Autonomy, supplemental cascade/AFL research, Dorothy/Neurogarden, and the expanded CERN research program. [Unified LaTeX source](paper/unified/main.tex).
 - `paper/autonomy-march-2026.pdf` — original March 2026 Autonomy formulation, preserved with LaTeX source.
 - `paper/ambiguity-autonomy-compliance-cascade.pdf` — historical AFL/compliance-cascade disclosure; contains live-system details.
 - `paper/constraint-is-freedom.pdf` — historical NuClide threshold-geometry and functional-constraint paper.
@@ -245,7 +259,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `5908e43d66207ec12e20e6717cdd2f12df2aa4666948d9713d0df09d3193515f`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `f6a76964fae19ee5878ebdc928b4710999b2389892d67dab509c0dd7cfc8cfb3`.
 
 Rebuild the paper and verify artifact identities with:
 
