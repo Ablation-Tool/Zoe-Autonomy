@@ -190,7 +190,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `106deda0df8e9d24a69210849320219fb39a2c3940c30e8f89b620a07962a82a`.
+The canonical result is `full_autonomy` with \(E=I=R=V=G=X=C=1\), 10/10 guard checks, and zero external actions. Its profile digest is `3ddfb1d01beee72edae8ac80bcb6f323aa21e2617fdf5c55f5f366d22f87c0de`.
 
 Rebuild the paper and verify artifact identities with:
 

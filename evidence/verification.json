@@ -10,7 +10,7 @@
   "guard_checks_passed": 10,
   "guard_checks_total": 10,
   "instrument": "zoe-autonomy-measurement-action-profile",
-  "profile_sha256": "106deda0df8e9d24a69210849320219fb39a2c3940c30e8f89b620a07962a82a",
+  "profile_sha256": "3ddfb1d01beee72edae8ac80bcb6f323aa21e2617fdf5c55f5f366d22f87c0de",
   "sandbox_executed": true,
   "selected_action": "preserve-evidence",
   "verified": true,

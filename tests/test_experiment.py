@@ -10,6 +10,8 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from types import ModuleType
+from unittest import mock
 
 from zoe_autonomy.cli import main
 from zoe_autonomy.experiment import run_experiment, save_report, verify_report
@@ -59,6 +61,8 @@ class ExperimentCase(unittest.TestCase):
         self.assertEqual(visual["saliency"]["source"]["kind"], "documented_synthetic_rgb_popout")
         self.assertEqual(len(visual["locked_revision"]), 40)
         self.assertEqual(len(visual["source_sha256"]["gem/saliency_cognition.py"]), 64)
+        with mock.patch.dict(sys.modules, {"gem": ModuleType("gem")}):
+            self.assertEqual(run_experiment(ZOE_ROOT)["visual_perception"], visual)
 
     @unittest.skipUnless(HAS_PIL, "visual image-file test requires Pillow")
     def test_visual_perception_real_image_and_replay(self):

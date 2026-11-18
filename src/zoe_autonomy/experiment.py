@@ -2,11 +2,13 @@ from __future__ import annotations
 
 from copy import deepcopy
 import hashlib
+import importlib
 import json
 import os
 from pathlib import Path
 import subprocess
 import sys
+from types import ModuleType
 
 from .loop import BoundedAutonomyLoop, Candidate, digest
 from .metrics import accessible_volume, effective_perception, profile, threshold_sweep
@@ -84,15 +86,26 @@ def _visual_perception(root, image_path=None, attention_steps=4):
     revision = lock.get("components", {}).get("graphics-environment-manager", {}).get("revision")
     if not isinstance(revision, str) or len(revision) != 40:
         raise ValueError("Zoe's canonical GEM revision lock is missing or invalid")
-    if str(source["path"]) not in sys.path:
-        sys.path.insert(0, str(source["path"]))
-    from gem.saliency_cognition import load_rgb, prototype_image, saliency_report
+    package_name = "_zoe_canonical_gem"
+    package_root = str(source["path"] / "gem")
+    package = sys.modules.get(package_name)
+    if package is not None and list(package.__path__) != [package_root]:
+        for name in tuple(sys.modules):
+            if name == package_name or name.startswith(package_name + "."):
+                del sys.modules[name]
+        package = None
+    if package is None:
+        package = ModuleType(package_name)
+        package.__path__ = [package_root]
+        package.__package__ = package_name
+        sys.modules[package_name] = package
+    saliency_module = importlib.import_module(f"{package_name}.saliency_cognition")
 
     if image_path is None:
-        saliency = saliency_report(prototype_image(), steps=attention_steps)
+        saliency = saliency_module.saliency_report(saliency_module.prototype_image(), steps=attention_steps)
     else:
-        rgb, image_source = load_rgb(image_path)
-        saliency = saliency_report(rgb, source=image_source, steps=attention_steps)
+        rgb, image_source = saliency_module.load_rgb(image_path)
+        saliency = saliency_module.saliency_report(rgb, source=image_source, steps=attention_steps)
     return {
         "engine": "canonical GEM shared saliency field",
         "repository": "https://github.com/Ablation-Tool/graphics-environment-manager",
